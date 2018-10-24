@@ -16,6 +16,7 @@ namespace flappybird {
 		bool isMoving;
 
 		float delayTime = 0.1f;
+		int GRAVITY = 4;
 		float PLAYER_SPEED = 100;
 		float PLAYER_ROTATION_SPEED = 300.0f;
 		int currentFrame = 0;
@@ -64,15 +65,13 @@ namespace flappybird {
 			//Distancia entre player y mouse
 			U = {  mousePosition.x - player.position.x  , mousePosition.y - player.position.y };
 
-			player.rotation = (atan2(U.y,U.x)*RAD2DEG);
+			//player.rotation = (atan2(U.y,U.x)*RAD2DEG);
 	
 			// Player logic: acceleration
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 				
-				if (player.rotation > 90) {
-					player.rotation = 45;
-				}
-				player.position.y -= 300 * GetFrameTime();
+				//player.rotation = 45;
+				player.speed.y = -250 * GetFrameTime();
 
 				currentFrame = 1;
 				player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
@@ -80,16 +79,15 @@ namespace flappybird {
 
 			}
 			else {
-				if (timer > delayTime) {
-					player.position.y += 200 * GetFrameTime();
+				if (timer > delayTime) {		
 					currentFrame = 0;
 					player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
 				}
 				
 			}
 			
-			
-			//player.position.y += player.acceleration.y* GetFrameTime();
+			player.speed.y += GRAVITY * GetFrameTime();
+			player.position.y += player.speed.y;
 
 			// Collision logic: player vs columns
 			/*
