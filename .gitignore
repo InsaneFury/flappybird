@@ -1,0 +1,9 @@
+#Ignore bin
+FlappyBird/[Bb]in/
+
+#Ignore obj
+FlappyBird/[Oo]bj/
+
+#Ignore .vs except .suo
+**/.vs
+.vs\Asteroid\v15\!.suo
