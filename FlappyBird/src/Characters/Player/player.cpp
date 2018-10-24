@@ -63,23 +63,29 @@ namespace flappybird {
 			mousePosition = GetMousePosition();
 
 			//Distancia entre player y mouse
-			U = {  mousePosition.x - player.position.x  , mousePosition.y - player.position.y };
+			U = {  mousePosition.x - player.position.x  , GetScreenHeight() - player.position.y };
 
 			//player.rotation = (atan2(U.y,U.x)*RAD2DEG);
 	
 			// Player logic: acceleration
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 				
-				//player.rotation = 45;
-				player.speed.y = -250 * GetFrameTime();
+				if (player.position.y >= player.texture.height) {
+					player.rotation = -45;
+					player.speed.y = -250 * GetFrameTime();
 
-				currentFrame = 1;
-				player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
-				timer = 0;
+					currentFrame = 1;
+					player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
+					timer = 0;
+				}
 
 			}
 			else {
-				if (timer > delayTime) {		
+				if (timer > delayTime) {
+					if (player.rotation < 90) {
+						player.rotation += 1 ;
+					}
+					
 					currentFrame = 0;
 					player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
 				}
