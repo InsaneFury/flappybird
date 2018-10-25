@@ -1,9 +1,9 @@
 <p align="center">
-  <img width="256" src="https://github.com/InsaneFury/Asteroid_Castellano/blob/master/Asteroids/res/readme/logo.png">
+  <img width="256" src="https://github.com/InsaneFury/flappybird/blob/master/Asteroids/res/readme/logo.png">
 </p>
 
 # Hello!
-My name is **Ivan Castellano** and this is my second game dev using **C++** & **RAYLIB**.
+My name is **Ivan Castellano** and this is my third game dev using **C++** & **RAYLIB**.
 Enjoy!
 
 # Skills
