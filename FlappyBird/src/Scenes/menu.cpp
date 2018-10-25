@@ -9,6 +9,7 @@ namespace flappybird {
 
 		//Images
 		Texture2D menu_bg;
+		Texture2D menu_title;
 
 		Vector2 title_position;
 
@@ -17,7 +18,10 @@ namespace flappybird {
 		buttons::BTNTEX quit;
 
 		void init() {
-			menu_bg = LoadTexture("res/Textures/NEW_BG_MENU.png");
+			menu_bg = LoadTexture("res/Textures/GAMEPLAY_BG.png");
+			menu_title = LoadTexture("res/Textures/TITLE_MENU.png");
+
+			title_position = { (float)GetScreenWidth() / 2 - menu_title.width / 2,50 };
 
 			play.btn_texture = LoadTexture("res/Textures/PLAY_BTN.png");
 			credits.btn_texture = LoadTexture("res/Textures/CREDITS_BTN.png");
@@ -63,17 +67,19 @@ namespace flappybird {
 
 			//Draw UI
 			DrawTexture(menu_bg,0,0,WHITE);
+			DrawTexture(menu_title, title_position.x, title_position.y, WHITE);
 
 			//Draw buttons
 			buttons::draw(play);
 			buttons::draw(credits);
 			buttons::draw(quit);
-			DrawText("v1.0", screenWidth - 50, screenHeight - 20, 20, WHITE);
+			DrawText("v0.1", screenWidth - 50, screenHeight - 20, 20, WHITE);
 		}
 
 		void deInit() {
 			//images
 			UnloadTexture(menu_bg);
+			UnloadTexture(menu_title);
 			//buttons
 			UnloadTexture(play.btn_texture);
 			UnloadTexture(credits.btn_texture);

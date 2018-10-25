@@ -29,12 +29,12 @@ namespace flappybird {
 			pause_bg = LoadTexture("res/Textures/PAUSE_BG.png");
 			pause_title = LoadTexture("res/Textures/PAUSE_TITLE.png");
 
-			resume.btn_texture = LoadTexture("res/Textures/RESUMEONHOVER_BTN.png");
-			resume.btnOnHover_texture = LoadTexture("res/Textures/RESUME_BTN.png");
-			retry.btn_texture = LoadTexture("res/Textures/RETRYONHOVER_BTN.png");
-			retry.btnOnHover_texture = LoadTexture("res/Textures/RETRY_BTN.png");
-			menu.btn_texture = LoadTexture("res/Textures/MENUONHOVER_BTN.png");
-			menu.btnOnHover_texture = LoadTexture("res/Textures/MENU_BTN.png");
+			resume.btn_texture = LoadTexture("res/Textures/RESUME_BTN.png");
+			resume.btnOnHover_texture = LoadTexture("res/Textures/RESUMEONHOVER_BTN.png");
+			retry.btn_texture = LoadTexture("res/Textures/RETRY_BTN.png");
+			retry.btnOnHover_texture = LoadTexture("res/Textures/RETRYONHOVER_BTN.png");
+			menu.btn_texture = LoadTexture("res/Textures/MENU_BTN.png");
+			menu.btnOnHover_texture = LoadTexture("res/Textures/MENUONHOVER_BTN.png");
 			quit.btn_texture = LoadTexture("res/Textures/QUIT_BTN.png");
 			quit.btnOnHover_texture = LoadTexture("res/Textures/QUITONHOVER_BTN.png");
 			mute.btn_texture = LoadTexture("res/Textures/MUTE_BTN.png");

@@ -10,6 +10,7 @@ namespace flappybird {
 
 		//Images
 		Texture2D credits_bg;
+		Texture2D credits_cloud;
 		Texture2D credits_astronaut;
 		Texture2D credits_title;
 		Texture2D credits_text;
@@ -24,6 +25,7 @@ namespace flappybird {
 
 		void init() {
 			credits_bg = LoadTexture("res/Textures/BG_CREDITS.png");
+			credits_cloud = LoadTexture("res/Textures/GAMEPLAY_BG.png");
 			credits_astronaut = LoadTexture("res/Textures/NEGATIVEASTRONAUT_CREDITS.png");
 			credits_title = LoadTexture("res/Textures/TITLE_CREDITS.png");
 			credits_text = LoadTexture("res/Textures/TEXT_CREDITS.png");
@@ -56,6 +58,7 @@ namespace flappybird {
 			ClearBackground(WHITE);
 
 			//Draw UI
+			DrawTexture(credits_cloud, 0, 0, WHITE);
 			DrawTexture(credits_bg, 0, 0, WHITE);
 			DrawTextureEx(credits_astronaut, astronaut_position, 0, 1, WHITE);
 			DrawTextureEx(credits_title, title_position, 0, 1, WHITE);
@@ -68,6 +71,7 @@ namespace flappybird {
 		void deInit() {
 			//Images
 			UnloadTexture(credits_bg);
+			UnloadTexture(credits_cloud);
 			UnloadTexture(credits_astronaut);
 			UnloadTexture(credits_title);
 			UnloadTexture(credits_text);

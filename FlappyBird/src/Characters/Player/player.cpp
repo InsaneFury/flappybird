@@ -84,19 +84,14 @@ namespace flappybird {
 				player.position.y += player.speed.y;
 			}
 			
-
 			// Collision logic: player vs ground
-
 			if (CheckCollisionCircleRec(player.position,player.radius,animations::ground_collider)) {
 				currentFrame = 2;
 				player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
 				player.position.y = animations::ground_collider.y;
 				isDead = true;
-			}
-			
-
+			}			
 			player.destRec = { player.position.x, player.position.y, (float)player.texture.width/3, (float)player.texture.height };
-
 		}
 
 		void draw() {
