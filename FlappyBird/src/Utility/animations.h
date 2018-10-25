@@ -11,6 +11,8 @@
 				Vector2 pos;
 				int speed;
 			};
+
+			extern Rectangle ground_collider;
 			
 			void init();
 			void update();
