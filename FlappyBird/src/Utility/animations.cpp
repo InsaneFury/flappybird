@@ -4,13 +4,17 @@ namespace flappybird {
 	namespace animations {
 
 		PXTEX gameplay_bg;
+		PXTEX gameplay_ground;
 
 		float timer;
 
 		void init() {
 			gameplay_bg.texture = LoadTexture("res/Textures/GAMEPLAY_BG.png");		
 			gameplay_bg.pos = { 0,0 };
-			gameplay_bg.speed = 5;
+			gameplay_bg.speed = 2;
+			gameplay_ground.texture = LoadTexture("res/Textures/GAMEPLAY_GROUND.png");
+			gameplay_ground.pos = { 0,(float)GetScreenHeight() - (float)gameplay_ground.texture.height + (float)gameplay_ground.texture.height/2 };
+			gameplay_ground.speed = 5;
 			timer = 0;
 		}
 
@@ -19,15 +23,18 @@ namespace flappybird {
 			if (timer > 0.02) {
 				timer = 0;
 				gameplay_bg.pos.x -= gameplay_bg.speed;
+				gameplay_ground.pos.x -= gameplay_ground.speed;
 			}		
 		}
 
 		void draw() {
 			parallaxFX(gameplay_bg.texture, gameplay_bg.pos);
+			parallaxFX(gameplay_ground.texture, gameplay_ground.pos);
 		}
 
 		void deInit() {
 			UnloadTexture(gameplay_bg.texture);
+			UnloadTexture(gameplay_ground.texture);
 		}
 
 		void parallaxFX(Texture2D texture, Vector2 &position) {		

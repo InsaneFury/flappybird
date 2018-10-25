@@ -3,7 +3,7 @@
 
 #include "raylib.h"
 
-#define AUDIO
+//#define AUDIO
 
 namespace flappybird {
 	namespace game {
