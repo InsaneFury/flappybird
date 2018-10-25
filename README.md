@@ -1,9 +1,5 @@
 <p align="center">
-<<<<<<< HEAD
-  <img width="256" src="https://github.com/InsaneFury/flappybird/blob/master/FlappyBird/res/readme/logo.png">
-=======
-  <img width="256" src="https://github.com/InsaneFury/flappybird/blob/master/FlappyBird/res/readme/logo.png">
->>>>>>> bef4250e6f713cf4eada082f0995d0b3bd875cb7
+<img width="256" src="https://github.com/InsaneFury/flappybird/blob/master/FlappyBird/res/readme/logo.png">
 </p>
 
 # Hello!
