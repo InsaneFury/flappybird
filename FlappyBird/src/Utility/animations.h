@@ -9,6 +9,7 @@
 			void update();
 			void draw();
 			void deInit();
+			void parallaxFX(Texture2D texture, Vector2 &originPoint);
 		}
 	}
 #endif // !ANIMATIONS_H

@@ -16,19 +16,12 @@ namespace flappybird {
 		bool isMoving;
 		float delayTime = 0.1f;
 		int currentFrame = 0;
-
-		
+	
 		int GRAVITY = 4;
 		int PLAYER_ON_CLICK_ROTATION = -45;
 		float PLAYER_SPEED = -250;
 		
-
 		static float timer; //Animations coming soon
-		
-		Vector2 mousePosition;
-		Vector2 U;
-		Vector2 UNormalized;
-
 
 		void init() {
 			player.texture = LoadTexture("res/Textures/space_ship.png");
@@ -41,9 +34,6 @@ namespace flappybird {
 			player.radius = (float)player.texture.width /3;
 			player.score = 0;
 			isMoving = false;
-
-			U = { 0, 0 };
-			UNormalized = { 0,0 };
 
 			// NOTE: Source rectangle (part of the texture to use for drawing)
 			player.sourceRec = { 0.0f, 0.0f, (float)player.texture.width/3, (float)player.texture.height };
@@ -77,19 +67,15 @@ namespace flappybird {
 					player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
 					timer = 0;
 				}
-				
-
 			}
 			else {
 				if (timer > delayTime) {
 					if (player.rotation < 90) {
 						player.rotation += 1;
-					}
-					
+					}				
 					currentFrame = 0;
 					player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
-				}
-				
+				}			
 			}
 			
 			player.speed.y += GRAVITY * GetFrameTime();

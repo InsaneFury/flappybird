@@ -6,6 +6,13 @@
 namespace flappybird {
 	namespace columns_enemys {		
 
+		struct Column{
+			Texture2D texture;
+			Vector2 position;
+			Rectangle collider;
+			int rotation;
+		};
+
 		void init();
 		void update();
 		void draw();
@@ -13,6 +20,4 @@ namespace flappybird {
 
 	}
 }
-
-
 #endif // !COLUMNS_H
