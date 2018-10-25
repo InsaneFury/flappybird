@@ -25,6 +25,7 @@ namespace flappybird {
 
 		extern Player player;
 		extern float PLAYER_SPEED;
+		extern bool isDead;
 
 		void init();
 		void update();

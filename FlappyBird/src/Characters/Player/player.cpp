@@ -14,7 +14,7 @@ namespace flappybird {
 		using namespace game;
 		Player player;
 
-		bool isMoving;
+		bool isDead;
 		float delayTime = 0.1f;
 		int currentFrame = 0;
 	
@@ -34,7 +34,7 @@ namespace flappybird {
 			player.speed.y = 0;
 			player.radius = (float)player.texture.width /3;
 			player.score = 0;
-			isMoving = false;
+			isDead = false;
 
 			// NOTE: Source rectangle (part of the texture to use for drawing)
 			player.sourceRec = { 0.0f, 0.0f, (float)player.texture.width/3, (float)player.texture.height };
@@ -54,7 +54,7 @@ namespace flappybird {
 			timer += GetFrameTime();
 	
 			// Player logic: acceleration
-			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && !isDead) {
 				
 				if (player.position.y >= player.texture.height) {
 					player.rotation = PLAYER_ON_CLICK_ROTATION;
@@ -79,14 +79,19 @@ namespace flappybird {
 				}			
 			}
 			
-			player.speed.y += GRAVITY * GetFrameTime();
-			player.position.y += player.speed.y;
+			if (!isDead && player.position.y != animations::ground_collider.y) {
+				player.speed.y += GRAVITY * GetFrameTime();
+				player.position.y += player.speed.y;
+			}
+			
 
 			// Collision logic: player vs ground
 
 			if (CheckCollisionCircleRec(player.position,player.radius,animations::ground_collider)) {
 				currentFrame = 2;
 				player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
+				player.position.y = animations::ground_collider.y;
+				isDead = true;
 			}
 			
 
@@ -96,9 +101,6 @@ namespace flappybird {
 
 		void draw() {
 			DrawTexturePro(player.texture,player.sourceRec,player.destRec,player.origin,player.rotation,player.color);
-			if (isMoving) {
-			
-			}
 		}
 
 		void deInit() {

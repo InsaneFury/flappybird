@@ -1,11 +1,15 @@
 #include "animations.h"
 
+#include "Characters\Player\player.h"
+
 namespace flappybird {
 	namespace animations {
 
 		PXTEX gameplay_bg;
 		PXTEX gameplay_ground;
 		Rectangle ground_collider;
+
+		float generalSpeedTime = 0.02f;
 
 		float timer;
 
@@ -27,7 +31,7 @@ namespace flappybird {
 
 		void update() {
 			timer += GetFrameTime();
-			if (timer > 0.02) {
+			if (timer > generalSpeedTime && !players::isDead) {
 				timer = 0;
 				gameplay_bg.pos.x -= gameplay_bg.speed;
 				gameplay_ground.pos.x -= gameplay_ground.speed;
