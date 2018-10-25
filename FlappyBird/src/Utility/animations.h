@@ -5,11 +5,18 @@
 
 	namespace flappybird {
 		namespace animations {
+			
+			struct PXTEX{
+				Texture2D texture;
+				Vector2 pos;
+				int speed;
+			};
+			
 			void init();
 			void update();
 			void draw();
 			void deInit();
-			void parallaxFX(Texture2D texture, Vector2 &originPoint);
+			void parallaxFX(Texture2D texture, Vector2 &position);
 		}
 	}
 #endif // !ANIMATIONS_H

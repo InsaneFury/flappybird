@@ -3,42 +3,38 @@
 namespace flappybird {
 	namespace animations {
 
-		Texture2D gameplay_bg;
-
-		Vector2 originPoint;
-		Vector2 destPoint;
+		PXTEX gameplay_bg;
 
 		float timer;
-		int parallaxSpeed;
 
 		void init() {
-			gameplay_bg = LoadTexture("res/Textures/GAMEPLAY_BG.png");		
-			originPoint = { 0,0 };
+			gameplay_bg.texture = LoadTexture("res/Textures/GAMEPLAY_BG.png");		
+			gameplay_bg.pos = { 0,0 };
+			gameplay_bg.speed = 5;
 			timer = 0;
-			parallaxSpeed = 5;
 		}
 
 		void update() {
 			timer += GetFrameTime();
 			if (timer > 0.02) {
 				timer = 0;
-				originPoint.x -= parallaxSpeed;
+				gameplay_bg.pos.x -= gameplay_bg.speed;
 			}		
 		}
 
 		void draw() {
-			parallaxFX(gameplay_bg, originPoint);
+			parallaxFX(gameplay_bg.texture, gameplay_bg.pos);
 		}
 
 		void deInit() {
-			UnloadTexture(gameplay_bg);
+			UnloadTexture(gameplay_bg.texture);
 		}
 
-		void parallaxFX(Texture2D texture, Vector2 &originPoint) {		
-			DrawTexture(texture, originPoint.x, originPoint.y, WHITE);
-			DrawTexture(texture, originPoint.x + texture.width, originPoint.y, WHITE);		
-			if (originPoint.x <= -texture.width) {
-				originPoint.x = 0;
+		void parallaxFX(Texture2D texture, Vector2 &position) {		
+			DrawTexture(texture, position.x, position.y, WHITE);
+			DrawTexture(texture, position.x + texture.width, position.y, WHITE);		
+			if (position.x <= -texture.width) {
+				position.x = 0;
 			}
 		}
 	}
