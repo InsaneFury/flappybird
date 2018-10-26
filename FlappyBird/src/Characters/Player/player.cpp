@@ -22,9 +22,10 @@ namespace flappybird {
 		float delayTime = 0.1f;
 		int currentFrame = 0;
 	
-		int GRAVITY = 4;
+		int GRAVITY = 2000;
 		int PLAYER_ON_CLICK_ROTATION = -45;
-		float PLAYER_SPEED = -250;
+		int GRAVITY_ROTATION = 250;
+		float PLAYER_SPEED = -500;
 		
 		static float timer; //Animations coming soon
 
@@ -69,7 +70,7 @@ namespace flappybird {
 					PlaySound(birdFlap);
 
 					player.rotation = PLAYER_ON_CLICK_ROTATION;
-					player.speed.y = PLAYER_SPEED * GetFrameTime();
+					player.speed.y = PLAYER_SPEED;
 
 					if (player.position.y <= player.texture.height) {
 						player.position.y = player.texture.height;
@@ -83,7 +84,7 @@ namespace flappybird {
 			else {
 				if (timer > delayTime) {
 					if (player.rotation < 90) {
-						player.rotation += 1;
+						player.rotation += GRAVITY_ROTATION * GetFrameTime();
 					}				
 					currentFrame = 0;
 					player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
@@ -101,7 +102,7 @@ namespace flappybird {
 
 			if (player.position.y != animations::ground_collider.y) {
 				player.speed.y += GRAVITY * GetFrameTime();
-				player.position.y += player.speed.y;
+				player.position.y += player.speed.y * GetFrameTime();
 			}
 			
 
