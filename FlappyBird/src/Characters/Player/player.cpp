@@ -1,8 +1,5 @@
 #include "player.h"
 
-#include <cmath>
-#include <iostream>
-
 #include "Characters\Enemys\columns.h"
 #include "Logic\game.h"
 #include "Utility\animations.h"
