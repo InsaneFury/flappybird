@@ -32,7 +32,7 @@ namespace flappybird {
 			player.rotation = 0;
 			player.speed.x = 0;
 			player.speed.y = 0;
-			player.radius = (float)player.texture.width /3;
+			player.radius = (float)(player.texture.width /3)/2;
 			player.score = 0;
 			isDead = false;
 
@@ -98,6 +98,9 @@ namespace flappybird {
 
 		void draw() {
 			DrawTexturePro(player.texture,player.sourceRec,player.destRec,player.origin,player.rotation,player.color);
+		#ifdef _DEBUG
+			DrawCircleV(player.position, player.radius, GREEN);
+		#endif // DEBUG	
 		}
 
 		void deInit() {

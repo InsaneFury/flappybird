@@ -4,11 +4,13 @@
 #include <iostream>
 
 #include "Utility\animations.h"
+#include "Characters\Player\player.h"
 
 namespace flappybird {
 	namespace columns_enemys {
 		using namespace std;
 		using namespace animations;
+		using namespace players;
 
 		static const unsigned int COL_GAP = 150;
 		static const unsigned int COL_SPEED = 300;
@@ -20,12 +22,9 @@ namespace flappybird {
 		Column columnsUp[totalCols];
 		Column columnsDown[totalCols];
 		int random;
-		float time;
 
 		void init() {
-
-			time = 0;
-
+			
 			for (int i = 0; i < totalCols; i++) {
 				random = GetRandomValue(MIN_RAND, MAX_RAND);
 
@@ -36,7 +35,9 @@ namespace flappybird {
 				columnsUp[i].position.y = 0 - random;
 
 				columnsUp[i].collider.height = columnsUp[i].texture.height;
-				columnsUp[i].collider.width = columnsUp[i].texture.width - columnsUp[i].texture.width/2;
+				columnsUp[i].collider.width = columnsUp[i].texture.width;
+				columnsUp[i].collider.x = 0;
+				columnsUp[i].collider.y = 0;
 
 				//Down Cols
 				columnsDown[i].texture = LoadTexture("res/Textures/TOP_COLUMN.png");
@@ -45,36 +46,55 @@ namespace flappybird {
 				columnsDown[i].position.y = columnsUp[i].position.y + columnsUp[i].texture.height + BIRD_GAP;
 
 				columnsDown[i].collider.height = columnsUp[i].texture.height;
-				columnsDown[i].collider.width = columnsUp[i].texture.width - columnsUp[i].texture.width / 2;
+				columnsDown[i].collider.width = columnsUp[i].texture.width;
+				columnsDown[i].collider.x = 0;
+				columnsDown[i].collider.y = 0;
 
 			}
 		
 		}
 
 		void update() {
-			for (int i = 0; i < totalCols; i++) {
-				random = GetRandomValue(MIN_RAND, MAX_RAND);
-				
-				columnsUp[i].position.x -= COL_SPEED * GetFrameTime();
-				columnsDown[i].position.x -= COL_SPEED * GetFrameTime();
+			if (!isDead) {
+				for (int i = 0; i < totalCols; i++) {
+					//Movement
+					random = GetRandomValue(MIN_RAND, MAX_RAND);
 
-				columnsUp[i].collider.x = (int)columnsUp[i].position.x;
-				columnsUp[i].collider.y = (int)columnsUp[i].position.y;
+					columnsUp[i].position.x -= COL_SPEED * GetFrameTime();
+					columnsDown[i].position.x -= COL_SPEED * GetFrameTime();
 
-				columnsDown[i].collider.x = (int)columnsDown[i].position.x;
-				columnsDown[i].collider.y = (int)columnsDown[i].position.y;
+					columnsUp[i].collider.x = (int)columnsUp[i].position.x;
+					columnsUp[i].collider.y = (int)columnsUp[i].position.y;
 
+					columnsDown[i].collider.x = (int)columnsDown[i].position.x;
+					columnsDown[i].collider.y = (int)columnsDown[i].position.y;
 
-				if (columnsUp[i].position.x + columnsUp[i].texture.width <= 0) {
-					// recicle up
-					columnsUp[i].position.y = 0 - random;
-					columnsUp[i].position.x = GetScreenWidth() + COL_GAP * 3;
+					//Collision
+					if (CheckCollisionCircleRec(player.position,player.radius, columnsUp[i].collider)) {
+						isDead = true;
+					}
 
-					// recicle down
-					columnsDown[i].position.y = columnsUp[i].position.y + columnsUp[i].texture.height + BIRD_GAP;
-					columnsDown[i].position.x = GetScreenWidth() + COL_GAP * 3;
+					if (CheckCollisionCircleRec(player.position, player.radius, columnsDown[i].collider)) {
+						isDead = true;
+					}
+
+					if (columnsUp[i].position.x + columnsUp[i].texture.width < player.position.x && !isDead) {
+						player.score++;
+					}
+
+					//Recicle
+					if (columnsUp[i].position.x + columnsUp[i].texture.width <= 0) {
+						// recicle up
+						columnsUp[i].position.y = 0 - random;
+						columnsUp[i].position.x = GetScreenWidth() + COL_GAP * 3;
+
+						// recicle down
+						columnsDown[i].position.y = columnsUp[i].position.y + columnsUp[i].texture.height + BIRD_GAP;
+						columnsDown[i].position.x = GetScreenWidth() + COL_GAP * 3;
+					}
 				}
-			}			
+			}
+			
 		}
 
 		void draw() {
@@ -82,6 +102,13 @@ namespace flappybird {
 			for (int i = 0; i < totalCols; i++) {
 				DrawTextureV(columnsUp[i].texture,columnsUp[i].position,WHITE);
 				DrawTextureV(columnsDown[i].texture, columnsDown[i].position, WHITE);
+			#ifdef _DEBUG
+				//See colliders
+				DrawRectangleLinesEx(columnsUp[i].collider, 2, GREEN);
+				DrawRectangleLinesEx(columnsDown[i].collider, 2, GREEN);
+			#endif // DEBUG
+
+				
 			}
 		}
 

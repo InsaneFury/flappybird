@@ -14,6 +14,7 @@ namespace flappybird {
 		float timer;
 
 		void init() {
+
 			gameplay_bg.texture = LoadTexture("res/Textures/GAMEPLAY_BG.png");		
 			gameplay_bg.pos = { 0,0 };
 			gameplay_bg.speed = 2;
@@ -34,14 +35,16 @@ namespace flappybird {
 			if (timer > generalSpeedTime && !players::isDead) {
 				timer = 0;
 				gameplay_bg.pos.x -= gameplay_bg.speed;
-				gameplay_ground.pos.x -= gameplay_ground.speed;
-				ground_collider.x = gameplay_ground.pos.x;
+
 			}		
 		}
 
 		void draw() {
-			parallaxFX(gameplay_bg.texture, gameplay_bg.pos);
 			parallaxFX(gameplay_ground.texture, gameplay_ground.pos);
+		#ifdef _DEBUG
+			DrawRectangleLinesEx(ground_collider, 2, GREEN);
+		#endif // DEBUG
+
 		}
 
 		void deInit() {
@@ -55,6 +58,10 @@ namespace flappybird {
 			if (position.x <= -texture.width) {
 				position.x = 0;
 			}
+		}
+
+		void drawBG() {
+			parallaxFX(gameplay_bg.texture, gameplay_bg.pos);
 		}
 	}
 }

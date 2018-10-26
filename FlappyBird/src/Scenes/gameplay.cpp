@@ -28,9 +28,10 @@ namespace flappybird {
 
 			gameplay_vintage = LoadTexture("res/Textures/VINTAGE.png");
 			gameplay_tutorial = LoadTexture("res/Textures/tutorial.png");
-			animations::init();
+			
 			players::init();
 			columns_enemys::init();
+			animations::init();
 			pause_menu::init();
 			victory::init();
 
@@ -73,9 +74,10 @@ namespace flappybird {
 				DrawTexture(gameplay_tutorial, 0, 0, WHITE);
 			}
 			else {
-				animations::draw();
+				animations::drawBG();
 				players::draw();
 				columns_enemys::draw();
+				animations::draw();
 				//DrawText(FormatText("SCORE: %02i", columns_enemys::destroyedMeteorsCount), GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, WHITE);
 				if (pause == false) {
 					buttons::draw(pause_btn);

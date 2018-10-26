@@ -20,6 +20,7 @@
 			void draw();
 			void deInit();
 			void parallaxFX(Texture2D texture, Vector2 &position);
+			void drawBG();
 		}
 	}
 #endif // !ANIMATIONS_H
