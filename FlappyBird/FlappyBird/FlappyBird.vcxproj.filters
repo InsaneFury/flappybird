@@ -46,14 +46,8 @@
     <ClCompile Include="..\src\Utility\animations.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Utility\post_processing.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Utility\pause_menu.cpp">
       <Filter>Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Scenes\victory.cpp">
-      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Characters\Enemys\columns.cpp">
       <Filter>Characters\Enemys</Filter>
@@ -84,14 +78,8 @@
     <ClInclude Include="..\src\Utility\animations.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Utility\post_processing.h">
-      <Filter>Utility</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Utility\pause_menu.h">
       <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Scenes\victory.h">
-      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Characters\Enemys\columns.h">
       <Filter>Characters\Enemys</Filter>

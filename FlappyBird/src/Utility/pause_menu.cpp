@@ -26,21 +26,21 @@ namespace flappybird {
 		static bool isPlaying;
 
 		void init() {
-			pause_bg = LoadTexture("res/Textures/PAUSE_BG.png");
-			pause_title = LoadTexture("res/Textures/PAUSE_TITLE.png");
+			pause_bg = LoadTexture("res/assets/Textures/PAUSE_BG.png");
+			pause_title = LoadTexture("res/assets/Textures/PAUSE_TITLE.png");
 
-			resume.btn_texture = LoadTexture("res/Textures/RESUME_BTN.png");
-			resume.btnOnHover_texture = LoadTexture("res/Textures/RESUMEONHOVER_BTN.png");
-			retry.btn_texture = LoadTexture("res/Textures/RETRY_BTN.png");
-			retry.btnOnHover_texture = LoadTexture("res/Textures/RETRYONHOVER_BTN.png");
-			menu.btn_texture = LoadTexture("res/Textures/MENU_BTN.png");
-			menu.btnOnHover_texture = LoadTexture("res/Textures/MENUONHOVER_BTN.png");
-			quit.btn_texture = LoadTexture("res/Textures/QUIT_BTN.png");
-			quit.btnOnHover_texture = LoadTexture("res/Textures/QUITONHOVER_BTN.png");
-			mute.btn_texture = LoadTexture("res/Textures/MUTE_BTN.png");
-			mute.btnOnHover_texture = LoadTexture("res/Textures/MUTE_BTN.png");
-			unmute.btn_texture = LoadTexture("res/Textures/MUTEON_BTN.png");
-			unmute.btnOnHover_texture = LoadTexture("res/Textures/MUTEON_BTN.png");
+			resume.btn_texture = LoadTexture("res/assets/Textures/RESUME_BTN.png");
+			resume.btnOnHover_texture = LoadTexture("res/assets/Textures/RESUMEONHOVER_BTN.png");
+			retry.btn_texture = LoadTexture("res/assets/Textures/RETRY_BTN.png");
+			retry.btnOnHover_texture = LoadTexture("res/assets/Textures/RETRYONHOVER_BTN.png");
+			menu.btn_texture = LoadTexture("res/assets/Textures/MENU_BTN.png");
+			menu.btnOnHover_texture = LoadTexture("res/assets/Textures/MENUONHOVER_BTN.png");
+			quit.btn_texture = LoadTexture("res/assets/Textures/QUIT_BTN.png");
+			quit.btnOnHover_texture = LoadTexture("res/assets/Textures/QUITONHOVER_BTN.png");
+			mute.btn_texture = LoadTexture("res/assets/Textures/MUTE_BTN.png");
+			mute.btnOnHover_texture = LoadTexture("res/assets/Textures/MUTE_BTN.png");
+			unmute.btn_texture = LoadTexture("res/assets/Textures/MUTEON_BTN.png");
+			unmute.btnOnHover_texture = LoadTexture("res/assets/Textures/MUTEON_BTN.png");
 
 			title_position = { (float)(screenWidth / 2 - pause_title.width / 2) + 10, (float)(screenHeight / 2 - pause_title.height / 2) - 180 };
 

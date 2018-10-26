@@ -16,10 +16,10 @@ namespace flappybird {
 
 		void init() {
 
-			gameplay_bg.texture = LoadTexture("res/Textures/GAMEPLAY_BG.png");		
+			gameplay_bg.texture = LoadTexture("res/assets/Textures/GAMEPLAY_BG.png");		
 			gameplay_bg.pos = { 0,0 };
 			gameplay_bg.speed = 200;
-			gameplay_ground.texture = LoadTexture("res/Textures/GAMEPLAY_GROUND.png");
+			gameplay_ground.texture = LoadTexture("res/assets/Textures/GAMEPLAY_GROUND.png");
 			gameplay_ground.pos = { 0,(float)GetScreenHeight() - (float)gameplay_ground.texture.height + (float)gameplay_ground.texture.height/2 };
 			gameplay_ground.speed = 500;
 

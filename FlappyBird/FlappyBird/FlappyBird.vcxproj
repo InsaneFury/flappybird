@@ -27,11 +27,9 @@
     <ClCompile Include="..\src\Scenes\gameOver.cpp" />
     <ClCompile Include="..\src\Scenes\gameplay.cpp" />
     <ClCompile Include="..\src\Scenes\menu.cpp" />
-    <ClCompile Include="..\src\Scenes\victory.cpp" />
     <ClCompile Include="..\src\Utility\animations.cpp" />
     <ClCompile Include="..\src\Utility\buttons.cpp" />
     <ClCompile Include="..\src\Utility\pause_menu.cpp" />
-    <ClCompile Include="..\src\Utility\post_processing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Characters\Enemys\columns.h" />
@@ -41,11 +39,9 @@
     <ClInclude Include="..\src\Scenes\gameOver.h" />
     <ClInclude Include="..\src\Scenes\gameplay.h" />
     <ClInclude Include="..\src\Scenes\menu.h" />
-    <ClInclude Include="..\src\Scenes\victory.h" />
     <ClInclude Include="..\src\Utility\animations.h" />
     <ClInclude Include="..\src\Utility\buttons.h" />
     <ClInclude Include="..\src\Utility\pause_menu.h" />
-    <ClInclude Include="..\src\Utility\post_processing.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -121,8 +117,8 @@
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>MKDIR "$(TargetDir)res"
-XCOPY "$(SolutionDir)res" "$(TargetDir)\res" /e /h /y /s</Command>
+      <Command>MKDIR "$(TargetDir)res/assets"
+XCOPY "$(SolutionDir)res/assets" "$(TargetDir)\res/assets" /e /h /y /s</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -156,8 +152,8 @@ XCOPY "$(SolutionDir)res" "$(TargetDir)\res" /e /h /y /s</Command>
       <AdditionalDependencies>raylib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>MKDIR "$(TargetDir)res"
-XCOPY "$(SolutionDir)res" "$(TargetDir)\res" /e /h /y /s</Command>
+      <Command>MKDIR "$(TargetDir)assets"
+XCOPY "$(SolutionDir)res/assets" "$(TargetDir)\assets" /e /h /y /s</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

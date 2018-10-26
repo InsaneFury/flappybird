@@ -27,7 +27,7 @@ namespace flappybird {
 				random = GetRandomValue(MIN_RAND, MAX_RAND);
 
 				//Up Cols
-				columnsUp[i].texture = LoadTexture("res/Textures/BOTTOM_COLUMN.png");
+				columnsUp[i].texture = LoadTexture("res/assets/Textures/BOTTOM_COLUMN.png");
 
 				columnsUp[i].position.x = GetScreenWidth() + COL_GAP + (COL_GAP + columnsUp[i].texture.width) * i;
 				columnsUp[i].position.y = 0 - random;
@@ -40,7 +40,7 @@ namespace flappybird {
 				columnsUp[i].check = false;
 
 				//Down Cols
-				columnsDown[i].texture = LoadTexture("res/Textures/TOP_COLUMN.png");
+				columnsDown[i].texture = LoadTexture("res/assets/Textures/TOP_COLUMN.png");
 
 				columnsDown[i].position.x = GetScreenWidth() + COL_GAP + (COL_GAP + columnsUp[i].texture.width) * i;
 				columnsDown[i].position.y = columnsUp[i].position.y + columnsUp[i].texture.height + BIRD_GAP;

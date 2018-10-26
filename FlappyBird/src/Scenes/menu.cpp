@@ -18,17 +18,17 @@ namespace flappybird {
 		buttons::BTNTEX quit;
 
 		void init() {
-			menu_bg = LoadTexture("res/Textures/GAMEPLAY_BG.png");
-			menu_title = LoadTexture("res/Textures/TITLE_MENU.png");
+			menu_bg = LoadTexture("res/assets/Textures/GAMEPLAY_BG.png");
+			menu_title = LoadTexture("res/assets/Textures/TITLE_MENU.png");
 
 			title_position = { (float)GetScreenWidth() / 2 - menu_title.width / 2,50 };
 
-			play.btn_texture = LoadTexture("res/Textures/PLAY_BTN.png");
-			credits.btn_texture = LoadTexture("res/Textures/CREDITS_BTN.png");
-			quit.btn_texture = LoadTexture("res/Textures/QUIT_BTN.png");
-			play.btnOnHover_texture = LoadTexture("res/Textures/PLAYONHOVER_BTN.png");
-			credits.btnOnHover_texture = LoadTexture("res/Textures/CREDITSONHOVER_BTN.png");
-			quit.btnOnHover_texture = LoadTexture("res/Textures/QUITONHOVER_BTN.png");
+			play.btn_texture = LoadTexture("res/assets/Textures/PLAY_BTN.png");
+			credits.btn_texture = LoadTexture("res/assets/Textures/CREDITS_BTN.png");
+			quit.btn_texture = LoadTexture("res/assets/Textures/QUIT_BTN.png");
+			play.btnOnHover_texture = LoadTexture("res/assets/Textures/PLAYONHOVER_BTN.png");
+			credits.btnOnHover_texture = LoadTexture("res/assets/Textures/CREDITSONHOVER_BTN.png");
+			quit.btnOnHover_texture = LoadTexture("res/assets/Textures/QUITONHOVER_BTN.png");
 
 			buttons::createButton(play, play.btn_texture.height, play.btn_texture.width, (float)(GetScreenWidth() / 2 - play.btn_texture.width / 2), (float)(GetScreenHeight() - 400), WHITE);
 			buttons::createButton(credits, credits.btn_texture.height, credits.btn_texture.width, (float)(GetScreenWidth() / 2 - credits.btn_texture.width / 2), (float)(GetScreenHeight() - 330), WHITE);

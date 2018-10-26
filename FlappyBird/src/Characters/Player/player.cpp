@@ -5,7 +5,6 @@
 
 #include "Characters\Enemys\columns.h"
 #include "Logic\game.h"
-#include "Scenes\victory.h"
 #include "Utility\animations.h"
 
 namespace flappybird {
@@ -30,7 +29,7 @@ namespace flappybird {
 		static float timer; //Animations coming soon
 
 		void init() {
-			player.texture = LoadTexture("res/Textures/space_ship.png");
+			player.texture = LoadTexture("res/assets/Textures/space_ship.png");
 			player.position = { (float)GetScreenWidth() / 2 - player.texture.width / 2 - 200,(float)GetScreenHeight() / 2 - player.texture.height / 2 };
 			player.color = WHITE;
 			player.acceleration = {0,0};
@@ -54,8 +53,8 @@ namespace flappybird {
 			//FrameTimeCounter
 			timer = GetFrameTime();
 			#ifdef AUDIO
-				birdFlap = LoadSound("res/Sound/flap.wav");
-				birdHit = LoadSound("res/Sound/hit.wav");
+				birdFlap = LoadSound("res/assets/Sound/flap.wav");
+				birdHit = LoadSound("res/assets/Sound/hit.wav");
 			#endif // AUDIO
 		}
 

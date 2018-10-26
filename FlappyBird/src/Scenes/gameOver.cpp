@@ -20,15 +20,15 @@ namespace flappybird {
 		buttons::BTNTEX quit;
 
 		void init() {
-			gameover_bg = LoadTexture("res/Textures/GAMEOVER_BG.png");
-			gameover_title = LoadTexture("res/Textures/GAMEOVER_TITLE.png");
+			gameover_bg = LoadTexture("res/assets/Textures/GAMEOVER_BG.png");
+			gameover_title = LoadTexture("res/assets/Textures/GAMEOVER_TITLE.png");
 
-			retry.btn_texture = LoadTexture("res/Textures/RETRY_BTN.png");
-			retry.btnOnHover_texture = LoadTexture("res/Textures/RETRYONHOVER_BTN.png");
-			menu.btn_texture = LoadTexture("res/Textures/MENU_BTN.png");
-			menu.btnOnHover_texture = LoadTexture("res/Textures/MENUONHOVER_BTN.png");
-			quit.btn_texture = LoadTexture("res/Textures/QUIT_BTN.png");
-			quit.btnOnHover_texture = LoadTexture("res/Textures/QUITONHOVER_BTN.png");
+			retry.btn_texture = LoadTexture("res/assets/Textures/RETRY_BTN.png");
+			retry.btnOnHover_texture = LoadTexture("res/assets/Textures/RETRYONHOVER_BTN.png");
+			menu.btn_texture = LoadTexture("res/assets/Textures/MENU_BTN.png");
+			menu.btnOnHover_texture = LoadTexture("res/assets/Textures/MENUONHOVER_BTN.png");
+			quit.btn_texture = LoadTexture("res/assets/Textures/QUIT_BTN.png");
+			quit.btnOnHover_texture = LoadTexture("res/assets/Textures/QUITONHOVER_BTN.png");
 
 			title_position = { (float)(screenWidth / 2 - gameover_title.width / 2) + 10, (float)(screenHeight / 2 - gameover_title.height / 2) - 180 };
 

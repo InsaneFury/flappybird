@@ -4,7 +4,6 @@
 #include "Scenes/gameOver.h"
 #include "Scenes/gameplay.h"
 #include "Scenes/credits.h"
-#include "Utility\post_processing.h"
 
 namespace flappybird {
 	namespace game {
@@ -44,11 +43,9 @@ namespace flappybird {
 			#ifdef AUDIO
 			#define AUDIO
 			InitAudioDevice();
-			bgMusic = LoadMusicStream("res/Music/bgmusic.ogg");
+			bgMusic = LoadMusicStream("res/assets/Music/bgmusic.ogg");
 			#endif // !AUDIO
 
-			
-			//postprocessing::init();
 			menu::init();
 			gameplay::init();
 			gameOver::init();
@@ -95,7 +92,6 @@ namespace flappybird {
 
 			ClearBackground(RAYWHITE);
 
-			//postprocessing::draw();
 			switch (actualScene) {
 			case Menu:
 				menu::draw();
@@ -113,7 +109,6 @@ namespace flappybird {
 				DrawText("An error has occurred please contact a Dev", screenWidth / 2, screenHeight / 2, 20, RED);
 				break;
 			}
-			//EndShaderMode();
 			EndDrawing();
 		}
 
@@ -125,7 +120,6 @@ namespace flappybird {
 				UnloadMusicStream(bgMusic);
 				CloseAudioDevice();
 			#endif // !AUDIO
-				//postprocessing::deInit();
 				gameplay::deInit();
 				credits::deInit();
 				menu::deInit();

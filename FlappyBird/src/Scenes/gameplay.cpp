@@ -22,12 +22,12 @@ namespace flappybird {
 		Vector2 mousePoint;
 
 		void init() {
-			pause_btn.btn_texture = LoadTexture("res/Textures/PAUSE_BTN.png");
-			pause_btn.btnOnHover_texture = LoadTexture("res/Textures/PAUSEONHOVER_BTN.png");
+			pause_btn.btn_texture = LoadTexture("res/assets/Textures/PAUSE_BTN.png");
+			pause_btn.btnOnHover_texture = LoadTexture("res/assets/Textures/PAUSEONHOVER_BTN.png");
 			buttons::createButton(pause_btn, pause_btn.btn_texture.height, pause_btn.btn_texture.width, (float)(GetScreenWidth() - pause_btn.btn_texture.width - pause_btn.btn_texture.width/2), (float)(pause_btn.btn_texture.height/2), WHITE);
 
-			gameplay_vintage = LoadTexture("res/Textures/VINTAGE.png");
-			gameplay_tutorial = LoadTexture("res/Textures/tutorial.png");
+			gameplay_vintage = LoadTexture("res/assets/Textures/VINTAGE.png");
+			gameplay_tutorial = LoadTexture("res/assets/Textures/tutorial.png");
 			
 			players::init();
 			columns_enemys::init();

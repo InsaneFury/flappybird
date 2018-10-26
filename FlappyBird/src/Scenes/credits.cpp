@@ -22,16 +22,16 @@ namespace flappybird {
 		//buttons::BTN back;
 
 		void init() {
-			credits_bg = LoadTexture("res/Textures/BG_CREDITS.png");
-			credits_cloud = LoadTexture("res/Textures/GAMEPLAY_BG.png");
-			credits_title = LoadTexture("res/Textures/TITLE_CREDITS.png");
-			credits_text = LoadTexture("res/Textures/TEXT_CREDITS.png");
+			credits_bg = LoadTexture("res/assets/Textures/BG_CREDITS.png");
+			credits_cloud = LoadTexture("res/assets/Textures/GAMEPLAY_BG.png");
+			credits_title = LoadTexture("res/assets/Textures/TITLE_CREDITS.png");
+			credits_text = LoadTexture("res/assets/Textures/TEXT_CREDITS.png");
 
 			title_position = { (float)(screenWidth / 2 - credits_title.width / 2), (float)(screenHeight / 2 - credits_title.height / 2) - 200 };
 			text_position = { (float)(screenWidth / 2 - credits_text.width / 2), (float)(screenHeight - credits_text.height / 2) - 275 };
 
-			back.btn_texture = LoadTexture("res/Textures/BACK_BTN.png");
-			back.btnOnHover_texture = LoadTexture("res/Textures/BACKONHOVER_BTN.png");
+			back.btn_texture = LoadTexture("res/assets/Textures/BACK_BTN.png");
+			back.btnOnHover_texture = LoadTexture("res/assets/Textures/BACKONHOVER_BTN.png");
 
 			buttons::createButton(back, back.btn_texture.height, back.btn_texture.width, (float)(0 + back.btn_texture.width/4), (float)GetScreenHeight() - back.btn_texture.height - 20,WHITE);
 
