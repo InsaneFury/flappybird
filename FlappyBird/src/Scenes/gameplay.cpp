@@ -84,9 +84,6 @@ namespace flappybird {
 					pause_menu::draw();
 				}
 			}
-				
-			
-
 			BeginBlendMode(BLEND_MULTIPLIED);
 			DrawTexture(gameplay_vintage, 0, 0, WHITE);
 			EndBlendMode();
