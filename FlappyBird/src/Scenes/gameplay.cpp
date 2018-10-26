@@ -50,7 +50,7 @@ namespace flappybird {
 						}
 					}
 				}
-				if (IsKeyPressed(KEY_SPACE)) {
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 					tutorial = false;
 				}
 		
