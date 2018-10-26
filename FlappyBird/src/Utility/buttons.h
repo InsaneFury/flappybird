@@ -22,7 +22,7 @@ namespace flappybird {
 			Rectangle size;
 			Color color;
 		};
-
+		
 		void createButton(BTN &button, int height, int width, int posX, int posY, int strokeThick, int fontSize, Color btnColor, Color strokeColor, Color textColor);
 		void createButton(BTNTEX &button, int height, int width, int posX, int posY, Color btnColor);
 		void isMouseOverButton(BTN &button);
