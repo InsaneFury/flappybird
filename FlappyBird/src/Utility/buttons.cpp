@@ -31,8 +31,7 @@ namespace flappybird {
 		void isMouseOverButton(BTN &button) {
 			Vector2 mousePoint = GetMousePosition();
 
-			if (CheckCollisionPointRec(mousePoint, button.size))
-			{
+			if (CheckCollisionPointRec(mousePoint, button.size)) {
 				button.color.a = 120;
 			}
 			else {
@@ -44,8 +43,7 @@ namespace flappybird {
 		void isMouseOverButton(BTNTEX &button) {
 			Vector2 mousePoint = GetMousePosition();
 
-			if (CheckCollisionPointRec(mousePoint, button.size))
-			{
+			if (CheckCollisionPointRec(mousePoint, button.size)) {
 				button.isHover = true;
 			}
 			else {
