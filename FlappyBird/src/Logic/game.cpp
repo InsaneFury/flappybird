@@ -57,7 +57,7 @@ namespace flappybird {
 			#ifdef AUDIO
 			#define AUDIO
 				PlayMusicStream(bgMusic);
-				SetMusicVolume(bgMusic, 1.0f);
+				SetMusicVolume(bgMusic, 0.5f);
 			#endif // !AUDIO
 			SetExitKey(0);
 		}

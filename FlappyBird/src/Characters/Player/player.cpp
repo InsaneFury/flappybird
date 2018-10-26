@@ -18,6 +18,7 @@ namespace flappybird {
 		Sound birdHit;
 
 		bool isDead;
+		bool deadSFX;
 		float delayTime = 0.1f;
 		int currentFrame = 0;
 	
@@ -38,6 +39,7 @@ namespace flappybird {
 			player.radius = (float)(player.texture.width /3)/2 - 15;
 			player.score = 0;
 			isDead = false;
+			deadSFX = true;
 
 			// NOTE: Source rectangle (part of the texture to use for drawing)
 			player.sourceRec = { 0.0f, 0.0f, (float)player.texture.width/3, (float)player.texture.height };
@@ -51,12 +53,9 @@ namespace flappybird {
 			//FrameTimeCounter
 			timer = GetFrameTime();
 			#ifdef AUDIO
-				birdFlap = LoadSound("res/Sound/flap.ogg");
-				birdHit = LoadSound("res/Sound/hit.ogg");
+				birdFlap = LoadSound("res/Sound/flap.wav");
+				birdHit = LoadSound("res/Sound/hit.wav");
 			#endif // AUDIO
-
-			
-
 		}
 
 		void update() {
@@ -92,7 +91,10 @@ namespace flappybird {
 			}
 			
 			if (isDead) {
-				PlaySound(birdHit);
+				if(deadSFX) {
+					PlaySound(birdHit);
+					deadSFX = false;
+				}
 				currentFrame = 2;
 				player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
 			}
