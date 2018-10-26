@@ -10,6 +10,7 @@ namespace flappybird {
 			Texture2D texture;
 			Vector2 position;
 			Rectangle collider;
+			bool check;
 		};
 
 		void init();

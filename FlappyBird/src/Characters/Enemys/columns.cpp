@@ -1,8 +1,5 @@
 #include "columns.h"
 
-#include <cmath>
-#include <iostream>
-
 #include "Utility\animations.h"
 #include "Characters\Player\player.h"
 
@@ -40,6 +37,8 @@ namespace flappybird {
 				columnsUp[i].collider.x = 0;
 				columnsUp[i].collider.y = 0;
 
+				columnsUp[i].check = false;
+
 				//Down Cols
 				columnsDown[i].texture = LoadTexture("res/Textures/TOP_COLUMN.png");
 
@@ -51,8 +50,8 @@ namespace flappybird {
 				columnsDown[i].collider.x = 0;
 				columnsDown[i].collider.y = 0;
 
+				columnsDown[i].check = false;
 			}
-		
 		}
 
 		void update() {
@@ -79,7 +78,8 @@ namespace flappybird {
 						isDead = true;
 					}
 
-					if (columnsUp[i].position.x + columnsUp[i].texture.width < player.position.x && !isDead) {
+					if (columnsUp[i].position.x + columnsUp[i].texture.width < player.position.x && !isDead && columnsUp[i].check == false) {
+						columnsUp[i].check = true;
 						player.score++;
 					}
 
@@ -88,10 +88,12 @@ namespace flappybird {
 						// recicle up
 						columnsUp[i].position.y = 0 - random;
 						columnsUp[i].position.x = GetScreenWidth() + COL_GAP * 3;
+						columnsUp[i].check = false;
 
 						// recicle down
 						columnsDown[i].position.y = columnsUp[i].position.y + columnsUp[i].texture.height + BIRD_GAP;
 						columnsDown[i].position.x = GetScreenWidth() + COL_GAP * 3;
+						columnsDown[i].check = false;
 					}
 				}
 			}
@@ -108,8 +110,7 @@ namespace flappybird {
 				DrawRectangleLinesEx(columnsUp[i].collider, 2, GREEN);
 				DrawRectangleLinesEx(columnsDown[i].collider, 2, GREEN);
 			#endif // DEBUG
-
-				
+		
 			}
 		}
 

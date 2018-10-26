@@ -63,9 +63,6 @@ namespace flappybird {
 				else {
 					pause_menu::update(isGameOver);
 				}
-				/*if (victory::isVictory()) {
-					victory::update(isGameOver);
-				}*/
 			}
 		}
 
@@ -78,7 +75,7 @@ namespace flappybird {
 				columns_enemys::draw();
 				players::draw();
 				animations::draw();
-				//DrawText(FormatText("SCORE: %02i", columns_enemys::destroyedMeteorsCount), GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, WHITE);
+				DrawText(FormatText("SCORE: %02i", players::player.score), GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, WHITE);
 				if (pause == false) {
 					buttons::draw(pause_btn);
 				}
@@ -86,9 +83,6 @@ namespace flappybird {
 				if (pause) {
 					pause_menu::draw();
 				}
-				/*if (victory::isVictory()) {
-					victory::draw();
-				}*/
 			}
 				
 			
