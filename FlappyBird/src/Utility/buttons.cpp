@@ -60,7 +60,7 @@ namespace flappybird {
 
 		//use for draw a button
 		void draw(BTNTEX button) {
-			if (!button.isHover)
+			if (button.isHover)
 			{
 				DrawTexture(button.btnOnHover_texture, button.size.x, button.size.y, button.color);
 			}
