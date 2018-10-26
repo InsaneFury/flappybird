@@ -41,7 +41,7 @@ namespace flappybird {
 			if (!isGameOver){
 
 				mousePoint = GetMousePosition();
-				if (pause == false) {
+				if (pause == false && players::isDead == false && tutorial == false) {
 					buttons::isMouseOverButton(pause_btn);
 					if (CheckCollisionPointRec(mousePoint, pause_btn.size))
 					{
