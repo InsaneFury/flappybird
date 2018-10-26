@@ -152,8 +152,8 @@ XCOPY "$(SolutionDir)res/assets" "$(TargetDir)\res/assets" /e /h /y /s</Command>
       <AdditionalDependencies>raylib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>MKDIR "$(TargetDir)assets"
-XCOPY "$(SolutionDir)res/assets" "$(TargetDir)\assets" /e /h /y /s</Command>
+      <Command>MKDIR "$(TargetDir)res/assets"
+XCOPY "$(SolutionDir)res/assets" "$(TargetDir)/res\assets" /e /h /y /s</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
