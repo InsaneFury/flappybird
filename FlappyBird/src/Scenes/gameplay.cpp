@@ -6,7 +6,7 @@
 #include "Characters\Player\player.h"
 #include "Characters\Enemys\columns.h"
 #include "Utility\buttons.h"
-#include "Scenes\victory.h"
+#include "Scenes\gameOver.h"
 
 namespace flappybird {
 	namespace gameplay {
@@ -33,8 +33,7 @@ namespace flappybird {
 			columns_enemys::init();
 			animations::init();
 			pause_menu::init();
-			victory::init();
-
+			gameOver::init();
 		}
 
 		void update(bool &isGameOver) {
@@ -60,8 +59,11 @@ namespace flappybird {
 					players::update();
 					columns_enemys::update();
 				}
-				else {
+				else if(players::isDead == false) {
 					pause_menu::update(isGameOver);
+				}
+				if (players::isDead) {
+					gameOver::update(isGameOver);
 				}
 			}
 		}
@@ -76,12 +78,16 @@ namespace flappybird {
 				players::draw();
 				animations::draw();
 				DrawText(FormatText("SCORE: %02i", players::player.score), GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, WHITE);
-				if (pause == false) {
+				if (pause == false && players::isDead == false) {
 					buttons::draw(pause_btn);
 				}
 
-				if (pause) {
+				if (pause && players::isDead == false) {
 					pause_menu::draw();
+				}
+
+				if (players::isDead) {
+					gameOver::draw();
 				}
 			}
 			BeginBlendMode(BLEND_MULTIPLIED);
@@ -90,7 +96,7 @@ namespace flappybird {
 		}
 
 		void deInit() {
-			victory::deInit();
+			gameOver::deInit();
 			pause_menu::deInit();
 			animations::deInit();
 			players::deInit();

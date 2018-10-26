@@ -23,10 +23,10 @@ namespace flappybird {
 			gameover_bg = LoadTexture("res/Textures/GAMEOVER_BG.png");
 			gameover_title = LoadTexture("res/Textures/GAMEOVER_TITLE.png");
 
-			retry.btn_texture = LoadTexture("res/Textures/RETRYONHOVER_BTN.png");
-			retry.btnOnHover_texture = LoadTexture("res/Textures/RETRY_BTN.png");
-			menu.btn_texture = LoadTexture("res/Textures/MENUONHOVER_BTN.png");
-			menu.btnOnHover_texture = LoadTexture("res/Textures/MENU_BTN.png");
+			retry.btn_texture = LoadTexture("res/Textures/RETRY_BTN.png");
+			retry.btnOnHover_texture = LoadTexture("res/Textures/RETRYONHOVER_BTN.png");
+			menu.btn_texture = LoadTexture("res/Textures/MENU_BTN.png");
+			menu.btnOnHover_texture = LoadTexture("res/Textures/MENUONHOVER_BTN.png");
 			quit.btn_texture = LoadTexture("res/Textures/QUIT_BTN.png");
 			quit.btnOnHover_texture = LoadTexture("res/Textures/QUITONHOVER_BTN.png");
 
