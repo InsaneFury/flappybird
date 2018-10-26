@@ -59,7 +59,7 @@ namespace flappybird {
 					players::update();
 					columns_enemys::update();
 				}
-				else if(players::isDead == false) {
+				else if(players::isDead == false && tutorial == false) {
 					pause_menu::update(isGameOver);
 				}
 				if (players::isDead) {
