@@ -12,6 +12,7 @@ namespace flappybird {
 		using namespace animations;
 		using namespace players;
 
+		static const int COL_INTERNAL_SPACE = 20;
 		static const unsigned int COL_GAP = 150;
 		static const unsigned int COL_SPEED = 300;
 		static const unsigned int BIRD_GAP = 215;

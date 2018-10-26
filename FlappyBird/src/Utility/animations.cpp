@@ -8,6 +8,7 @@ namespace flappybird {
 		PXTEX gameplay_bg;
 		PXTEX gameplay_ground;
 		Rectangle ground_collider;
+		int COLLIDER_GROUND_ADJUSTMENT = 15;
 
 		float generalSpeedTime = 0.02f;
 
@@ -25,7 +26,7 @@ namespace flappybird {
 			ground_collider.height = gameplay_ground.texture.height;
 			ground_collider.width = gameplay_ground.texture.width;
 			ground_collider.x = gameplay_ground.pos.x;
-			ground_collider.y = gameplay_ground.pos.y;
+			ground_collider.y = gameplay_ground.pos.y + COLLIDER_GROUND_ADJUSTMENT;
 
 			timer = 0;
 		}

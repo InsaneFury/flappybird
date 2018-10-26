@@ -32,7 +32,7 @@ namespace flappybird {
 			player.rotation = 0;
 			player.speed.x = 0;
 			player.speed.y = 0;
-			player.radius = (float)(player.texture.width /3)/2;
+			player.radius = (float)(player.texture.width /3)/2 - 15;
 			player.score = 0;
 			isDead = false;
 
@@ -79,11 +79,17 @@ namespace flappybird {
 				}			
 			}
 			
-			if (!isDead && player.position.y != animations::ground_collider.y) {
+			if (isDead) {
+				currentFrame = 2;
+				player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
+			}
+
+			if (player.position.y != animations::ground_collider.y) {
 				player.speed.y += GRAVITY * GetFrameTime();
 				player.position.y += player.speed.y;
 			}
 			
+
 			// Collision logic: player vs ground
 			if (CheckCollisionCircleRec(player.position,player.radius,animations::ground_collider)) {
 				currentFrame = 2;

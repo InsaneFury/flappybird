@@ -74,9 +74,9 @@ namespace flappybird {
 				DrawTexture(gameplay_tutorial, 0, 0, WHITE);
 			}
 			else {
-				animations::drawBG();
-				players::draw();
+				animations::drawBG();	
 				columns_enemys::draw();
+				players::draw();
 				animations::draw();
 				//DrawText(FormatText("SCORE: %02i", columns_enemys::destroyedMeteorsCount), GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, WHITE);
 				if (pause == false) {
