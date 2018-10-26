@@ -12,7 +12,10 @@ namespace flappybird {
 	namespace players {
 		using namespace columns_enemys;
 		using namespace game;
+
 		Player player;
+		Sound birdFlap;
+		Sound birdHit;
 
 		bool isDead;
 		float delayTime = 0.1f;
@@ -47,6 +50,12 @@ namespace flappybird {
 
 			//FrameTimeCounter
 			timer = GetFrameTime();
+			#ifdef AUDIO
+				birdFlap = LoadSound("res/Sound/flap.ogg");
+				birdHit = LoadSound("res/Sound/hit.ogg");
+			#endif // AUDIO
+
+			
 
 		}
 
@@ -57,6 +66,9 @@ namespace flappybird {
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && !isDead) {
 				
 				if (player.position.y >= player.texture.height) {
+
+					PlaySound(birdFlap);
+
 					player.rotation = PLAYER_ON_CLICK_ROTATION;
 					player.speed.y = PLAYER_SPEED * GetFrameTime();
 
@@ -80,6 +92,7 @@ namespace flappybird {
 			}
 			
 			if (isDead) {
+				PlaySound(birdHit);
 				currentFrame = 2;
 				player.sourceRec.x = (float)currentFrame*(float)player.texture.width / 3;
 			}
@@ -111,6 +124,12 @@ namespace flappybird {
 
 		void deInit() {
 			UnloadTexture(player.texture);
+		#ifdef AUDIO
+			UnloadSound(birdFlap);
+			UnloadSound(birdHit);
+		#endif // AUDIO
+
+			
 		}
 	}
 }
