@@ -1,10 +1,25 @@
 <p align="center">
-<img width="256" src="https://github.com/InsaneFury/flappybird/blob/master/FlappyBird/res/assets/readme/logo.png">
+<img width="256" src="https://github.com/InsaneFury/flappybird/blob/master/FlappyBird/res/assets/Textures/TITLE_MENU.png">
 </p>
 
 # Hello!
 My name is **Ivan Castellano** and this is my third game dev using **C++** & **RAYLIB**.
+Its a Flappy Bird Re-Version by me!
 Enjoy!
+
+# Some Screenshots
+<p align="center">
+<img width="1000" src="https://github.com/InsaneFury/flappybird/blob/master/screenshots/1.png">
+</p>
+<p align="center">
+<img width="1000" src="https://github.com/InsaneFury/flappybird/blob/master/screenshots/2.png">
+</p>
+<p align="center">
+<img width="1000" src="https://github.com/InsaneFury/flappybird/blob/master/screenshots/3.png">
+</p>
+<p align="center">
+<img width="1000" src="https://github.com/InsaneFury/flappybird/blob/master/screenshots/4.png">
+</p>
 
 # Skills
 - **C++/C# Programmer**
