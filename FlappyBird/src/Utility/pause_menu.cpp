@@ -42,14 +42,32 @@ namespace flappybird {
 			unmute.btn_texture = LoadTexture("res/assets/Textures/MUTEON_BTN.png");
 			unmute.btnOnHover_texture = LoadTexture("res/assets/Textures/MUTEON_BTN.png");
 
-			title_position = { (float)(screenWidth / 2 - pause_title.width / 2) + 10, (float)(screenHeight / 2 - pause_title.height / 2) - 180 };
+			title_position = { (float)(screenWidth / 2 - pause_title.width / 2) + 10, 
+				               (float)(screenHeight / 2 - pause_title.height / 2) - 180 };
 
-			buttons::createButton(resume, resume.btn_texture.height, resume.btn_texture.width, (float)(GetScreenWidth() / 2 - resume.btn_texture.width / 2), (float)(GetScreenHeight() - 400), WHITE);
-			buttons::createButton(retry, retry.btn_texture.height, retry.btn_texture.width, (float)(GetScreenWidth() / 2 - retry.btn_texture.width / 2), (float)(GetScreenHeight() - 330), WHITE);
-			buttons::createButton(menu, menu.btn_texture.height, menu.btn_texture.width, (float)(GetScreenWidth() / 2 - menu.btn_texture.width / 2), (float)(GetScreenHeight() - 260), WHITE);
-			buttons::createButton(quit, quit.btn_texture.height, quit.btn_texture.width, (float)(GetScreenWidth() / 2 - quit.btn_texture.width / 2), (float)(GetScreenHeight() - 190), WHITE);
-			buttons::createButton(mute, mute.btn_texture.height, mute.btn_texture.width, (float)(GetScreenWidth() / 2 - mute.btn_texture.width / 2), (float)(GetScreenHeight() - 120), WHITE);
-			buttons::createButton(unmute, unmute.btn_texture.height, unmute.btn_texture.width, (float)(GetScreenWidth() / 2 - unmute.btn_texture.width / 2), (float)(GetScreenHeight() - 120), WHITE);
+			buttons::createButton(resume, resume.btn_texture.height, resume.btn_texture.width, 
+								 (float)(GetScreenWidth() / 2 - resume.btn_texture.width / 2), 
+								 (float)(GetScreenHeight() - 400), WHITE);
+
+			buttons::createButton(retry, retry.btn_texture.height, retry.btn_texture.width, 
+								 (float)(GetScreenWidth() / 2 - retry.btn_texture.width / 2), 
+								 (float)(GetScreenHeight() - 330), WHITE);
+
+			buttons::createButton(menu, menu.btn_texture.height, menu.btn_texture.width, 
+								 (float)(GetScreenWidth() / 2 - menu.btn_texture.width / 2), 
+								 (float)(GetScreenHeight() - 260), WHITE);
+
+			buttons::createButton(quit, quit.btn_texture.height, quit.btn_texture.width, 
+								 (float)(GetScreenWidth() / 2 - quit.btn_texture.width / 2), 
+								 (float)(GetScreenHeight() - 190), WHITE);
+
+			buttons::createButton(mute, mute.btn_texture.height, mute.btn_texture.width, 
+								 (float)(GetScreenWidth() / 2 - mute.btn_texture.width / 2), 
+								 (float)(GetScreenHeight() - 120), WHITE);
+
+			buttons::createButton(unmute, unmute.btn_texture.height, unmute.btn_texture.width, 
+								 (float)(GetScreenWidth() / 2 - unmute.btn_texture.width / 2), 
+								 (float)(GetScreenHeight() - 120), WHITE);
 
 			isPlaying = true;
 		}

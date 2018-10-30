@@ -19,8 +19,6 @@ namespace flappybird {
 
 		buttons::BTNTEX back;
 
-		//buttons::BTN back;
-
 		void init() {
 			credits_bg = LoadTexture("res/assets/Textures/BG_CREDITS.png");
 			credits_cloud = LoadTexture("res/assets/Textures/GAMEPLAY_BG.png");

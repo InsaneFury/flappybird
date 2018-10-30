@@ -27,7 +27,8 @@ namespace flappybird {
 
 		void init() {
 			player.texture = LoadTexture("res/assets/Textures/space_ship.png");
-			player.position = { (float)GetScreenWidth() / 2 - player.texture.width / 2 - 200,(float)GetScreenHeight() / 2 - player.texture.height / 2 };
+			player.position = { (float)GetScreenWidth() / 2 - player.texture.width / 2 - 200,
+								(float)GetScreenHeight() / 2 - player.texture.height / 2 };
 			player.color = WHITE;
 			player.acceleration = {0,0};
 			player.rotation = 0;
@@ -42,7 +43,8 @@ namespace flappybird {
 			player.sourceRec = { 0.0f, 0.0f, (float)player.texture.width/3, (float)player.texture.height };
 
 			// NOTE: Destination rectangle (screen rectangle where drawing part of texture)
-			player.destRec = { player.position.x, player.position.y, (float)player.texture.width, (float)player.texture.height};
+			player.destRec = { player.position.x, player.position.y, (float)player.texture.width, 
+																	 (float)player.texture.height};
 
 			// NOTE: Origin of the texture (rotation/scale point), it's relative to destination rectangle size
 			player.origin = { ((float)player.texture.width/3)/2, (float)player.texture.height/2 };
@@ -111,11 +113,13 @@ namespace flappybird {
 			}
 
 
-			player.destRec = { player.position.x, player.position.y, (float)player.texture.width/3, (float)player.texture.height };
+			player.destRec = { player.position.x, player.position.y, (float)player.texture.width/3, 
+																	 (float)player.texture.height };
 		}
 
 		void draw() {
-			DrawTexturePro(player.texture,player.sourceRec,player.destRec,player.origin,player.rotation,player.color);
+			DrawTexturePro(player.texture,player.sourceRec,player.destRec,
+						   player.origin,player.rotation,player.color);
 		#ifdef _DEBUG
 			DrawCircleV(player.position, player.radius, GREEN);
 		#endif // DEBUG	

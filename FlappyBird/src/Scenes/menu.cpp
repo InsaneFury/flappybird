@@ -30,9 +30,17 @@ namespace flappybird {
 			credits.btnOnHover_texture = LoadTexture("res/assets/Textures/CREDITSONHOVER_BTN.png");
 			quit.btnOnHover_texture = LoadTexture("res/assets/Textures/QUITONHOVER_BTN.png");
 
-			buttons::createButton(play, play.btn_texture.height, play.btn_texture.width, (float)(GetScreenWidth() / 2 - play.btn_texture.width / 2), (float)(GetScreenHeight() - 400), WHITE);
-			buttons::createButton(credits, credits.btn_texture.height, credits.btn_texture.width, (float)(GetScreenWidth() / 2 - credits.btn_texture.width / 2), (float)(GetScreenHeight() - 330), WHITE);
-			buttons::createButton(quit, quit.btn_texture.height, quit.btn_texture.width, (float)(GetScreenWidth() / 2 - quit.btn_texture.width / 2), (float)(GetScreenHeight() - 260), WHITE);
+			buttons::createButton(play, play.btn_texture.height, play.btn_texture.width, 
+								 (float)(GetScreenWidth() / 2 - play.btn_texture.width / 2), 
+				                 (float)(GetScreenHeight() - 400), WHITE);
+
+			buttons::createButton(credits, credits.btn_texture.height, credits.btn_texture.width, 
+								 (float)(GetScreenWidth() / 2 - credits.btn_texture.width / 2), 
+								 (float)(GetScreenHeight() - 330), WHITE);
+
+			buttons::createButton(quit, quit.btn_texture.height, quit.btn_texture.width, 
+								 (float)(GetScreenWidth() / 2 - quit.btn_texture.width / 2), 
+								 (float)(GetScreenHeight() - 260), WHITE);
 
 		}
 

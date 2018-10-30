@@ -78,7 +78,8 @@ namespace flappybird {
 						isDead = true;
 					}
 
-					if (columnsUp[i].position.x + columnsUp[i].texture.width < player.position.x && !isDead && columnsUp[i].check == false) {
+					if (columnsUp[i].position.x + columnsUp[i].texture.width < player.position.x && 
+						s!isDead && columnsUp[i].check == false) {
 						columnsUp[i].check = true;
 						player.score++;
 					}

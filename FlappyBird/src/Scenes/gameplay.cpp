@@ -24,7 +24,9 @@ namespace flappybird {
 		void init() {
 			pause_btn.btn_texture = LoadTexture("res/assets/Textures/PAUSE_BTN.png");
 			pause_btn.btnOnHover_texture = LoadTexture("res/assets/Textures/PAUSEONHOVER_BTN.png");
-			buttons::createButton(pause_btn, pause_btn.btn_texture.height, pause_btn.btn_texture.width, (float)(GetScreenWidth() - pause_btn.btn_texture.width - pause_btn.btn_texture.width/2), (float)(pause_btn.btn_texture.height/2), WHITE);
+			buttons::createButton(pause_btn, pause_btn.btn_texture.height, pause_btn.btn_texture.width, 
+				                 (float)(GetScreenWidth() - pause_btn.btn_texture.width - pause_btn.btn_texture.width/2), 
+				                 (float)(pause_btn.btn_texture.height/2), WHITE);
 
 			gameplay_vintage = LoadTexture("res/assets/Textures/VINTAGE.png");
 			gameplay_tutorial = LoadTexture("res/assets/Textures/tutorial.png");
@@ -77,7 +79,10 @@ namespace flappybird {
 				columns_enemys::draw();
 				players::draw();
 				animations::draw();
-				DrawText(FormatText("SCORE: %02i", players::player.score), GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, WHITE);
+
+				DrawText(FormatText("SCORE: %02i", players::player.score), 
+					     GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, WHITE);
+
 				if (pause == false && players::isDead == false) {
 					buttons::draw(pause_btn);
 				}
