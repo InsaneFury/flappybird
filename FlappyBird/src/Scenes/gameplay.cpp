@@ -104,7 +104,11 @@ namespace flappybird {
 			gameOver::deInit();
 			pause_menu::deInit();
 			animations::deInit();
-			players::deInit();
+
+			#ifndef AUDIO
+				players::deInit();
+			#endif // !AUDIO
+
 			columns_enemys::deInit();
 			UnloadTexture(gameplay_vintage);
 			UnloadTexture(gameplay_tutorial);

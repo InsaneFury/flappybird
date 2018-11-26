@@ -4,6 +4,7 @@
 #include "Scenes/gameOver.h"
 #include "Scenes/gameplay.h"
 #include "Scenes/credits.h"
+#include "Characters/Player/player.h"
 
 namespace flappybird {
 	namespace game {
@@ -41,7 +42,6 @@ namespace flappybird {
 			InitWindow(screenWidth, screenHeight, "FlappyBird | by Ivan Castellano");
 			
 			#ifdef AUDIO
-			#define AUDIO
 			InitAudioDevice();
 			bgMusic = LoadMusicStream("res/assets/Music/bgmusic.ogg");
 			#endif // !AUDIO
@@ -52,7 +52,6 @@ namespace flappybird {
 			credits::init();
 
 			#ifdef AUDIO
-			#define AUDIO
 				PlayMusicStream(bgMusic);
 				SetMusicVolume(bgMusic, 0.5f);
 			#endif // !AUDIO
@@ -63,7 +62,6 @@ namespace flappybird {
 			// Update
 			//----------------------------------------------------------------------------------
 			#ifdef AUDIO
-			#define AUDIO
 			UpdateMusicStream(bgMusic);
 			#endif // AUDIO
 			
@@ -116,8 +114,8 @@ namespace flappybird {
 			// De-Initialization
 			//--------------------------------------------------------------------------------------
 			#ifdef AUDIO
-			#define AUDIO
 				UnloadMusicStream(bgMusic);
+				players::deInit();
 				CloseAudioDevice();
 			#endif // !AUDIO
 				gameplay::deInit();

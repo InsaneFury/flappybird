@@ -130,9 +130,7 @@ namespace flappybird {
 		#ifdef AUDIO
 			UnloadSound(birdFlap);
 			UnloadSound(birdHit);
-		#endif // AUDIO
-
-			
+		#endif // AUDIO	
 		}
 	}
 }
