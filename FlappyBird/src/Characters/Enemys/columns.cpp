@@ -27,7 +27,7 @@ namespace flappybird {
 				random = GetRandomValue(MIN_RAND, MAX_RAND);
 
 				//Up Cols
-				columnsUp[i].texture = LoadTexture("res/assets/Textures/BOTTOM_COLUMN.png");
+				columnsUp[i].texture = LoadTexture("res/assets/Textures/COLUMN.png");
 
 				columnsUp[i].position.x = GetScreenWidth() + COL_GAP + (COL_GAP + columnsUp[i].texture.width) * i;
 				columnsUp[i].position.y = 0 - random;
@@ -37,10 +37,18 @@ namespace flappybird {
 				columnsUp[i].collider.x = 0;
 				columnsUp[i].collider.y = 0;
 
+				columnsUp[i].sourceRec = { 0.0f, 0.0f, (float)columnsUp[i].texture.width, 
+													   (float)columnsUp[i].texture.height };
+
+				columnsUp[i].destRec = { columnsUp[i].position.x, columnsUp[i].position.y, 
+										(float)columnsUp[i].texture.width,(float)columnsUp[i].texture.height };
+
+				columnsUp[i].origin = { 0,0 };
+
 				columnsUp[i].check = false;
 
 				//Down Cols
-				columnsDown[i].texture = LoadTexture("res/assets/Textures/TOP_COLUMN.png");
+				columnsDown[i].texture = LoadTexture("res/assets/Textures/COLUMN.png");
 
 				columnsDown[i].position.x = GetScreenWidth() + COL_GAP + (COL_GAP + columnsUp[i].texture.width) * i;
 				columnsDown[i].position.y = columnsUp[i].position.y + columnsUp[i].texture.height + BIRD_GAP;
@@ -49,6 +57,15 @@ namespace flappybird {
 				columnsDown[i].collider.width = columnsUp[i].texture.width;
 				columnsDown[i].collider.x = 0;
 				columnsDown[i].collider.y = 0;
+
+				columnsDown[i].sourceRec = { 0.0f, 0.0f, (float)columnsDown[i].texture.width,
+													   (float)columnsDown[i].texture.height };
+
+				columnsDown[i].destRec = { columnsDown[i].position.x, columnsDown[i].position.y,
+										(float)columnsDown[i].texture.width,(float)columnsDown[i].texture.height };
+
+				columnsDown[i].origin = { (float)columnsDown[i].texture.width,
+										(float)columnsDown[i].texture.height };
 
 				columnsDown[i].check = false;
 			}
@@ -68,7 +85,7 @@ namespace flappybird {
 
 					columnsDown[i].collider.x = (int)columnsDown[i].position.x;
 					columnsDown[i].collider.y = (int)columnsDown[i].position.y;
-
+					
 					//Collision
 					if (CheckCollisionCircleRec(player.position,player.radius, columnsUp[i].collider)) {
 						isDead = true;
@@ -96,6 +113,12 @@ namespace flappybird {
 						columnsDown[i].position.x = GetScreenWidth() + COL_GAP * 3;
 						columnsDown[i].check = false;
 					}
+
+					columnsDown[i].destRec = { columnsDown[i].position.x, columnsDown[i].position.y,
+										(float)columnsDown[i].texture.width,(float)columnsDown[i].texture.height };
+
+					columnsUp[i].destRec = { columnsUp[i].position.x, columnsUp[i].position.y,
+										(float)columnsUp[i].texture.width,(float)columnsUp[i].texture.height };
 				}
 			}
 			
@@ -104,8 +127,12 @@ namespace flappybird {
 		void draw() {
 			
 			for (int i = 0; i < totalCols; i++) {
-				DrawTextureV(columnsUp[i].texture,columnsUp[i].position,WHITE);
-				DrawTextureV(columnsDown[i].texture, columnsDown[i].position, WHITE);
+				//DrawTextureV(columnsUp[i].texture,columnsUp[i].position,WHITE);
+				DrawTexturePro(columnsDown[i].texture, columnsDown[i].sourceRec,
+					columnsDown[i].destRec, columnsDown[i].origin, 180, WHITE);
+				DrawTexturePro(columnsUp[i].texture, columnsUp[i].sourceRec,
+					columnsUp[i].destRec, columnsUp[i].origin, 0, WHITE);
+				//DrawTextureV(columnsDown[i].texture, columnsDown[i].position, WHITE);
 			#ifdef _DEBUG
 				//See colliders
 				DrawRectangleLinesEx(columnsUp[i].collider, 2, GREEN);
