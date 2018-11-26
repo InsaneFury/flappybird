@@ -26,7 +26,7 @@ namespace flappybird {
 		static float timer; //Animations coming soon
 
 		void init() {
-			player.texture = LoadTexture("res/assets/Textures/space_ship.png");
+			player.texture = LoadTexture("res/assets/Textures/birdhero.png");
 			player.position = { (float)GetScreenWidth() / 2 - player.texture.width / 2 - 200,
 								(float)GetScreenHeight() / 2 - player.texture.height / 2 };
 			player.color = WHITE;
