@@ -127,12 +127,11 @@ namespace flappybird {
 		void draw() {
 			
 			for (int i = 0; i < totalCols; i++) {
-				//DrawTextureV(columnsUp[i].texture,columnsUp[i].position,WHITE);
 				DrawTexturePro(columnsDown[i].texture, columnsDown[i].sourceRec,
 					columnsDown[i].destRec, columnsDown[i].origin, 180, WHITE);
 				DrawTexturePro(columnsUp[i].texture, columnsUp[i].sourceRec,
 					columnsUp[i].destRec, columnsUp[i].origin, 0, WHITE);
-				//DrawTextureV(columnsDown[i].texture, columnsDown[i].position, WHITE);
+
 			#ifdef _DEBUG
 				//See colliders
 				DrawRectangleLinesEx(columnsUp[i].collider, 2, GREEN);

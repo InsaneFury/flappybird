@@ -34,7 +34,7 @@ namespace flappybird {
 			player.rotation = 0;
 			player.speed.x = 0;
 			player.speed.y = 0;
-			player.radius = (float)(player.texture.width /3)/2 - 15;
+			player.radius = (float)(player.texture.width /3)/2 - 30;
 			player.score = 0;
 			isDead = false;
 			deadSFX = true;
