@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1] - 2018-11-26
+### Fixed
+- Unloadsound bird_flap
+
 ## [1.0] - 2018-10-29
 ### Added
 - Added Raws files
