@@ -48,23 +48,20 @@ namespace flappybird {
 			Vector2 mousePoint = GetMousePosition();
 
 			buttons::isMouseOverButton(play);
-			if (CheckCollisionPointRec(mousePoint, play.size))
-			{
+			if (CheckCollisionPointRec(mousePoint, play.size)){
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 					actualScene = Game;
 				}
 			}
 			buttons::isMouseOverButton(credits);
-			if (CheckCollisionPointRec(mousePoint, credits.size))
-			{
+			if (CheckCollisionPointRec(mousePoint, credits.size)){
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 					actualScene = Credits;
 				}
 			}
 
 			buttons::isMouseOverButton(quit);
-			if (CheckCollisionPointRec(mousePoint, quit.size))
-			{
+			if (CheckCollisionPointRec(mousePoint, quit.size)){
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 					endGame = true;
 				}

@@ -23,7 +23,7 @@ namespace flappybird {
 		int GRAVITY_ROTATION = 250;
 		float PLAYER_SPEED = -500;
 		
-		static float timer; //Animations coming soon
+		static float timer; 
 
 		void init() {
 			player.texture = LoadTexture("res/assets/Textures/birdhero.png");
@@ -61,7 +61,8 @@ namespace flappybird {
 			timer += GetFrameTime();
 	
 			// Player logic: acceleration
-			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && !isDead) {
+			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) || 
+				((GetGamepadButtonPressed() != -1) && GetGamepadButtonPressed() == 2) && !isDead) {
 				
 				if (player.position.y >= player.texture.height) {
 
