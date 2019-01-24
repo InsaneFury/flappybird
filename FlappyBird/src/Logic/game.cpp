@@ -113,12 +113,14 @@ namespace flappybird {
 		void deInit() {
 			// De-Initialization
 			//--------------------------------------------------------------------------------------
+
+			gameplay::deInit();
 			#ifdef AUDIO
 				UnloadMusicStream(bgMusic);
 				players::deInit();
 				CloseAudioDevice();
 			#endif // !AUDIO
-				gameplay::deInit();
+				
 				credits::deInit();
 				menu::deInit();
 			CloseWindow();        // Close window and OpenGL context
