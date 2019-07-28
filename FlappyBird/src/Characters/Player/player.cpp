@@ -4,6 +4,14 @@
 #include "Logic\game.h"
 #include "Utility\animations.h"
 
+#if defined(PLATFORM_RPI)
+#define XBOX360_NAME_ID     "Microsoft X-Box 360 pad"
+#define PS3_NAME_ID         "PLAYSTATION(R)3 Controller"
+#else
+#define XBOX360_NAME_ID     "Xbox 360 Controller"
+#define PS3_NAME_ID         "PLAYSTATION(R)3 Controller"
+#endif
+
 namespace flappybird {
 	namespace players {
 		using namespace columns_enemys;
@@ -42,6 +50,7 @@ namespace flappybird {
 
 		void update() {
 			timer += GetFrameTime();
+
 			playerOneController();
 			if (multiplayerOn) {
 				playerTwoController();
@@ -80,9 +89,10 @@ namespace flappybird {
 
 		void playerOneController() {
 			// Player1 logic: acceleration
-			if ((IsMouseButtonPressed(MOUSE_LEFT_BUTTON) ||
-				((GetGamepadButtonPressed() != -1) && GetGamepadButtonPressed() == 2)) && !player.isDead) {
+			bool buttonPressed = (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) ||
+								  IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_TRIGGER_1));
 
+			if (buttonPressed && !player.isDead) {
 				if (player.position.y >= player.texture.height) {
 
 					PlaySound(birdFlap);
@@ -141,8 +151,10 @@ namespace flappybird {
 
 		void playerTwoController() {
 			// Player2 logic: acceleration
-			if ((IsMouseButtonPressed(MOUSE_RIGHT_BUTTON) ||
-				((GetGamepadButtonPressed() != -1) && GetGamepadButtonPressed() == 2)) && !player2.isDead) {
+			bool buttonPressed = (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON) ||
+								 (IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_LEFT_TRIGGER_1)));
+
+			if (buttonPressed && !player2.isDead) {
 
 				if (player2.position.y >= player2.texture.height) {
 

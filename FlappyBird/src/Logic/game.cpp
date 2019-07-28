@@ -24,6 +24,8 @@ namespace flappybird {
 
 		static bool isGameOver = false;
 		bool multiplayerOn = false;
+		static bool joystick = false;
+
 
 		void runGame() {
 			init();
@@ -61,12 +63,14 @@ namespace flappybird {
 		}
 
 		void update() {
-			// Update
-			//----------------------------------------------------------------------------------
+			
 			#ifdef AUDIO
 			UpdateMusicStream(bgMusic);
 			#endif // AUDIO
-			
+			if (IsGamepadAvailable(GAMEPAD_PLAYER1))
+			{
+				joystick = true;
+			}
 			switch (actualScene) {
 			case Menu:
 				menu::update(isGameOver);
@@ -108,6 +112,10 @@ namespace flappybird {
 			default:
 				DrawText("An error has occurred please contact a Dev", screenWidth / 2, screenHeight / 2, 20, RED);
 				break;
+			}
+			if (joystick)
+			{
+				DrawText(FormatText("GP1: %s", GetGamepadName(GAMEPAD_PLAYER1)), 10, 10, 10, BLACK);
 			}
 			EndDrawing();
 		}
