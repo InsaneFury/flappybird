@@ -34,7 +34,7 @@ namespace flappybird {
 
 		void update() {
 			timer += GetFrameTime();
-			if (!players::isDead) {
+			if (!players::player.isDead && !players::player2.isDead) {
 				gameplay_bg.pos.x -= gameplay_bg.speed * GetFrameTime();
 				gameplay_ground.pos.x -= gameplay_ground.speed * GetFrameTime();
 			}		

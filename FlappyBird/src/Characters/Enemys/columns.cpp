@@ -2,6 +2,7 @@
 
 #include "Utility\animations.h"
 #include "Characters\Player\player.h"
+#include "Logic/game.h"
 
 namespace flappybird {
 	namespace columns_enemys {
@@ -20,6 +21,8 @@ namespace flappybird {
 		Column columnsUp[totalCols];
 		Column columnsDown[totalCols];
 		int random;
+
+		bool playersAreDead = false;
 
 		void init() {
 			
@@ -72,7 +75,15 @@ namespace flappybird {
 		}
 
 		void update() {
-			if (!isDead) {
+
+			if (game::multiplayerOn) {
+				playersAreDead = players::player.isDead && players::player2.isDead;
+			}
+			else {
+				playersAreDead = players::player.isDead;
+			}
+
+			if (!playersAreDead) {
 				for (int i = 0; i < totalCols; i++) {
 					//Movement
 					random = GetRandomValue(MIN_RAND, MAX_RAND);
@@ -86,19 +97,36 @@ namespace flappybird {
 					columnsDown[i].collider.x = (int)columnsDown[i].position.x;
 					columnsDown[i].collider.y = (int)columnsDown[i].position.y;
 					
-					//Collision
+					//Collision player 1
 					if (CheckCollisionCircleRec(player.position,player.radius, columnsUp[i].collider)) {
-						isDead = true;
+						player.isDead = true;
 					}
 
 					if (CheckCollisionCircleRec(player.position, player.radius, columnsDown[i].collider)) {
-						isDead = true;
+						player.isDead = true;
 					}
 
 					if (columnsUp[i].position.x + columnsUp[i].texture.width < player.position.x && 
-						!isDead && columnsUp[i].check == false) {
+						!player.isDead && columnsUp[i].check == false) {
 						columnsUp[i].check = true;
 						player.score++;
+					}
+
+					if (game::multiplayerOn) {
+						//Collision player 2
+						if (CheckCollisionCircleRec(player2.position, player2.radius, columnsUp[i].collider)) {
+							player2.isDead = true;
+						}
+
+						if (CheckCollisionCircleRec(player2.position, player2.radius, columnsDown[i].collider)) {
+							player2.isDead = true;
+						}
+
+						if (columnsUp[i].position.x + columnsUp[i].texture.width < player2.position.x &&
+							!player2.isDead && columnsUp[i].check == false) {
+							columnsUp[i].check = true;
+							player.score++;
+						}
 					}
 
 					//Recicle

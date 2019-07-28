@@ -14,6 +14,7 @@ namespace flappybird {
 			float rotation;
 			Vector2 acceleration;
 			int score;
+			bool isDead;
 			//Stuff to use DrawTexturePro
 			// NOTE: Source rectangle (part of the texture to use for drawing)
 			Rectangle sourceRec;
@@ -24,13 +25,18 @@ namespace flappybird {
 		};
 
 		extern Player player;
+		extern Player player2;
 		extern float PLAYER_SPEED;
-		extern bool isDead;
+		//extern bool isDead;
 
 		void init();
 		void update();
 		void draw();
 		void deInit();
+		void playerOneController();
+		void playerTwoController();
+		void initPlayerOne();
+		void initPlayerTwo();
 	}
 }
 #endif // !PLAYER_H

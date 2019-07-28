@@ -18,6 +18,7 @@ namespace flappybird {
 		};
 
 		extern ActualScene actualScene;
+		extern bool multiplayerOn;
 		extern Music bgMusic;
 		void runGame();
 	}

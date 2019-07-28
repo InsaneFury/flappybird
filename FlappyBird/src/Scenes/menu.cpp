@@ -66,6 +66,7 @@ namespace flappybird {
 			if (CheckCollisionPointRec(mousePoint, multiplayer.size)) {
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 					actualScene = Game;
+					multiplayerOn = true;
 				}
 			}
 

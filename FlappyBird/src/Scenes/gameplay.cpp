@@ -13,6 +13,7 @@ namespace flappybird {
 
 		bool pause = false;
 		bool tutorial = true;
+		bool playersAreDead = false;
 
 		Texture2D gameplay_vintage;
 		Texture2D gameplay_tutorial;
@@ -41,9 +42,16 @@ namespace flappybird {
 		void update(bool &isGameOver) {
 
 			if (!isGameOver){
+				if (game::multiplayerOn) {
+					playersAreDead = players::player.isDead && players::player2.isDead;
+				}
+				else {
+					playersAreDead = players::player.isDead;
+				}
+				
 
 				mousePoint = GetMousePosition();
-				if (pause == false && players::isDead == false && tutorial == false) {
+				if (!pause && !playersAreDead && !tutorial) {
 					buttons::isMouseOverButton(pause_btn);
 					if (CheckCollisionPointRec(mousePoint, pause_btn.size))
 					{
@@ -56,15 +64,15 @@ namespace flappybird {
 					tutorial = false;
 				}
 		
-				if (!pause && tutorial == false){
+				if (!pause && !tutorial){
 					animations::update();
 					players::update();
 					columns_enemys::update();
 				}
-				else if(players::isDead == false && tutorial == false) {
+				else if(!playersAreDead && !tutorial) {
 					pause_menu::update(isGameOver);
 				}
-				if (players::isDead) {
+				if (playersAreDead) {
 					gameOver::update(isGameOver);
 				}
 			}
@@ -83,15 +91,15 @@ namespace flappybird {
 				DrawText(FormatText("SCORE: %02i", players::player.score), 
 					     GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, WHITE);
 
-				if (pause == false && players::isDead == false) {
+				if (!pause && !playersAreDead) {
 					buttons::draw(pause_btn);
 				}
 
-				if (pause && players::isDead == false) {
+				if (pause && !playersAreDead) {
 					pause_menu::draw();
 				}
 
-				if (players::isDead) {
+				if (playersAreDead) {
 					gameOver::draw();
 				}
 			}

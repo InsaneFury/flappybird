@@ -23,6 +23,7 @@ namespace flappybird {
 		ActualScene actualScene = Menu;
 
 		static bool isGameOver = false;
+		bool multiplayerOn = false;
 
 		void runGame() {
 			init();
@@ -37,10 +38,11 @@ namespace flappybird {
 		}
 
 		void init() {
+			
+			InitWindow(screenWidth, screenHeight, "FlappyBird | by Ivan Castellano");
 			//Initialization of all the game!
 			SetConfigFlags(FLAG_MSAA_4X_HINT);      // Enable Multi Sampling Anti Aliasing 4x (if available)
-			InitWindow(screenWidth, screenHeight, "FlappyBird | by Ivan Castellano");
-			
+
 			#ifdef AUDIO
 			InitAudioDevice();
 			bgMusic = LoadMusicStream("res/assets/Music/bgmusic.ogg");
