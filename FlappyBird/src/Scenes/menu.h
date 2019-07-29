@@ -8,6 +8,7 @@ namespace flappybird {
 		void draw();
 		void deInit();
 		void mouseInput();
+		void joystickInput();
 	}
 }
 #endif // !MENU_H

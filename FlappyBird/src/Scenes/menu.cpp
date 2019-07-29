@@ -7,16 +7,25 @@ namespace flappybird {
 	namespace menu {
 		using namespace game;
 
+		enum mainMenu {
+			play_enum,
+			multiplayer_enum,
+			credits_enum,
+			quit_enum
+		}menu;
+
 		//Images
 		Texture2D menu_bg;
 		Texture2D menu_title;
 
 		Vector2 title_position;
 
-		buttons::BTNTEX play;
-		buttons::BTNTEX multiplayer;
-		buttons::BTNTEX credits;
-		buttons::BTNTEX quit;
+		static buttons::BTNTEX play;
+		static buttons::BTNTEX multiplayer;
+		static buttons::BTNTEX credits;
+		static buttons::BTNTEX quit;
+
+		static int menuPos = 0;
 
 		void init() {
 			menu_bg = LoadTexture("res/assets/Textures/GAMEPLAY_BG.png");
@@ -25,12 +34,12 @@ namespace flappybird {
 			title_position = { (float)GetScreenWidth() / 2 - menu_title.width / 2,50 };
 
 			play.btn_texture = LoadTexture("res/assets/Textures/PLAY_BTN.png");
-			multiplayer.btn_texture = LoadTexture("res/assets/Textures/MULTIPLAYER_BTN.png"); //Add Asset!
+			multiplayer.btn_texture = LoadTexture("res/assets/Textures/MULTIPLAYER_BTN.png"); 
 			credits.btn_texture = LoadTexture("res/assets/Textures/CREDITS_BTN.png");
 			quit.btn_texture = LoadTexture("res/assets/Textures/QUIT_BTN.png");
 
 			play.btnOnHover_texture = LoadTexture("res/assets/Textures/PLAYONHOVER_BTN.png");
-			multiplayer.btnOnHover_texture = LoadTexture("res/assets/Textures/MULTIPLAYERONHOVER_BTN.png"); //Add Asset!
+			multiplayer.btnOnHover_texture = LoadTexture("res/assets/Textures/MULTIPLAYERONHOVER_BTN.png"); 
 			credits.btnOnHover_texture = LoadTexture("res/assets/Textures/CREDITSONHOVER_BTN.png");
 			quit.btnOnHover_texture = LoadTexture("res/assets/Textures/QUITONHOVER_BTN.png");
 
@@ -54,9 +63,9 @@ namespace flappybird {
 
 		void update() {
 			mouseInput();
-			/*if (joystick) {
+			if (joystick) {
 				joystickInput();
-			}*/
+			}
 		}
 
 		void draw() {
@@ -122,37 +131,71 @@ namespace flappybird {
 			}
 		}
 
-		/*void joystickInput() {
+		void joystickInput() {
 
-			buttons::isMouseOverButton(play);
-			if () {
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+			if (IsGamepadButtonPressed(GAMEPAD_PLAYER1,GAMEPAD_BUTTON_LEFT_FACE_DOWN)) {
+				if (menuPos > 2) {
+					menuPos = 0;
+				}
+				else {
+					menuPos++;
+				}
+				menu = static_cast<mainMenu>(menuPos);
+			}
+			if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_LEFT_FACE_UP)) {
+				if (menuPos <= 0) {
+					menuPos = 3;
+				}
+				else {
+					menuPos--;
+				}
+				menu = static_cast<mainMenu>(menuPos);
+			}
+
+			switch (menu){
+			case play_enum:
+				play.isHover = true;
+				multiplayer.isHover = false;
+				credits.isHover = false;
+				quit.isHover = false;
+				if (IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
 					actualScene = Game;
 				}
-			}
-
-			buttons::isMouseOverButton(multiplayer);
-			if () {
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					actualScene = Game;
-					multiplayerOn = true;
+				
+				break;
+			case multiplayer_enum:
+				multiplayer.isHover = true;
+				play.isHover = false;
+				quit.isHover = false;
+				credits.isHover = false;
+				if (IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+				actualScene = Game;
+				multiplayerOn = true;
 				}
-			}
-
-			buttons::isMouseOverButton(credits);
-			if () {
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					actualScene = Credits;
+				break;
+			case credits_enum:
+				credits.isHover = true;
+				play.isHover = false;
+				multiplayer.isHover = false;
+				quit.isHover = false;
+				if (IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+				actualScene = Credits;
 				}
-			}
-
-			buttons::isMouseOverButton(quit);
-			if () {
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					isGameOver = true;
+				break;
+			case quit_enum:
+				quit.isHover = true;
+				play.isHover = false;
+				multiplayer.isHover = false;
+				credits.isHover = false;
+				if (IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+				isGameOver = true;
 				}
+				break;
+			default:
+				break;
 			}
-		}*/
+					
+		}
 	}
 }
 
