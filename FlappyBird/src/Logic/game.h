@@ -5,6 +5,14 @@
 
 #define AUDIO
 
+#if defined(PLATFORM_RPI)
+#define XBOX360_NAME_ID     "Microsoft X-Box 360 pad"
+#define PS3_NAME_ID         "PLAYSTATION(R)3 Controller"
+#else
+#define XBOX360_NAME_ID     "Xbox 360 Controller"
+#define PS3_NAME_ID         "PLAYSTATION(R)3 Controller"
+#endif
+
 namespace flappybird {
 	namespace game {
 		extern int screenWidth;

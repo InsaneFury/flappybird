@@ -7,6 +7,8 @@ namespace flappybird {
 		void update();
 		void draw();
 		void deInit();
+		void joystickInput();
+		void mouseInput();
 	}
 }
 #endif // !GAMEOVER_H

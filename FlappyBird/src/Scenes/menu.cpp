@@ -2,6 +2,7 @@
 
 #include "Logic/game.h"
 #include "Utility/buttons.h"
+#include "gameplay.h"
 
 namespace flappybird {
 	namespace menu {
@@ -162,6 +163,7 @@ namespace flappybird {
 				quit.isHover = false;
 				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
 					actualScene = Game;
+					gameplay::init();
 				}
 				
 				break;

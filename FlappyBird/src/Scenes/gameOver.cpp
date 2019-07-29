@@ -9,6 +9,14 @@ namespace flappybird {
 		using namespace game;
 		using namespace gameplay;
 
+		enum gameOverMenu {
+			retry_enum,
+			menu_enum,
+			quit_enum
+		}gMenu;
+
+		static int menuPos = 0;
+
 		//Images
 		Texture2D gameover_bg;
 		Texture2D gameover_title;
@@ -49,6 +57,95 @@ namespace flappybird {
 
 		void update() {
 
+			if (joystick) {
+				joystickInput();
+			}
+			else {
+				mouseInput();
+			}	
+		}
+
+		void draw() {
+			ClearBackground(WHITE);
+			//Draw UI
+			DrawTexture(gameover_bg, 0, 0, WHITE);
+			DrawTextureEx(gameover_title, title_position, 0, 1, WHITE);
+
+			//Draw buttons
+			buttons::draw(retry);
+			buttons::draw(menu);
+			buttons::draw(quit);
+		}
+
+		void deInit() {
+			//images
+			UnloadTexture(gameover_bg);
+			UnloadTexture(gameover_title);
+			//buttons
+			UnloadTexture(retry.btn_texture);
+			UnloadTexture(menu.btn_texture);
+			UnloadTexture(quit.btn_texture);
+		}
+
+		void joystickInput() {
+
+			if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_LEFT_FACE_DOWN)) {
+				if (menuPos > 1) {
+					menuPos = 0;
+				}
+				else {
+					menuPos++;
+				}
+				gMenu = static_cast<gameOverMenu>(menuPos);
+			}
+			if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_LEFT_FACE_UP)) {
+				if (menuPos <= 0) {
+					menuPos = 2;
+				}
+				else {
+					menuPos--;
+				}
+				gMenu = static_cast<gameOverMenu>(menuPos);
+			}
+
+			switch (gMenu) {
+			case retry_enum:
+				retry.isHover = true;
+				menu.isHover = false;
+				quit.isHover = false;
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+					actualScene = Game;
+					gameplay::pause = false;
+					gameplay::tutorial = true;
+					gameplay::init();
+				}
+
+				break;
+			case menu_enum:
+				menu.isHover = true;
+				retry.isHover = false;
+				quit.isHover = false;
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+					gameplay::init();
+					gameplay::pause = false;
+					gameplay::tutorial = true;
+					actualScene = Menu;
+				}
+				break;
+			case quit_enum:
+				quit.isHover = true;
+				retry.isHover = false;
+				menu.isHover = false;
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+					isGameOver = true;
+				}
+				break;
+			default:
+				break;
+			}
+		}
+
+		void mouseInput() {
 			//mouse
 			Vector2 mousePoint = GetMousePosition();
 
@@ -79,28 +176,6 @@ namespace flappybird {
 					isGameOver = true;
 				}
 			}
-		}
-
-		void draw() {
-			ClearBackground(WHITE);
-			//Draw UI
-			DrawTexture(gameover_bg, 0, 0, WHITE);
-			DrawTextureEx(gameover_title, title_position, 0, 1, WHITE);
-
-			//Draw buttons
-			buttons::draw(retry);
-			buttons::draw(menu);
-			buttons::draw(quit);
-		}
-
-		void deInit() {
-			//images
-			UnloadTexture(gameover_bg);
-			UnloadTexture(gameover_title);
-			//buttons
-			UnloadTexture(retry.btn_texture);
-			UnloadTexture(menu.btn_texture);
-			UnloadTexture(quit.btn_texture);
 		}
 	}
 }
