@@ -7,6 +7,7 @@
 #include "Characters\Enemys\columns.h"
 #include "Utility\buttons.h"
 #include "Scenes\gameOver.h"
+#include <iostream>
 
 namespace flappybird {
 	namespace gameplay {
@@ -40,8 +41,9 @@ namespace flappybird {
 		}
 
 		void update() {
-
+			
 			if (!game::isGameOver){
+
 				if (game::multiplayerOn) {
 					playersAreDead = players::player.isDead && players::player2.isDead;
 				}
@@ -52,6 +54,12 @@ namespace flappybird {
 
 				mousePoint = GetMousePosition();
 				if (!pause && !playersAreDead && !tutorial) {
+					if (game::joystick) {
+						if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_MIDDLE_RIGHT)) {
+							pause = !pause;
+						}
+					}
+					
 					buttons::isMouseOverButton(pause_btn);
 					if (CheckCollisionPointRec(mousePoint, pause_btn.size))
 					{
@@ -60,7 +68,8 @@ namespace flappybird {
 						}
 					}
 				}
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) || IsGamepadButtonReleased(GAMEPAD_PLAYER1,GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
 					tutorial = false;
 				}
 		
@@ -122,6 +131,7 @@ namespace flappybird {
 			UnloadTexture(gameplay_tutorial);
 			UnloadTexture(pause_btn.btn_texture);
 		}
+
 	}
 }
 

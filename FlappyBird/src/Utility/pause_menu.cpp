@@ -10,6 +10,15 @@ namespace flappybird {
 		using namespace game;
 		using namespace gameplay;
 
+		enum pauseMenu {
+			resume_enum,
+			retry_enum,
+			menu_enum,
+			quit_enum
+		}pMenu;
+
+		static int menuPos = 0;
+
 		//Images
 		Texture2D pause_bg;
 		Texture2D pause_title;
@@ -73,58 +82,11 @@ namespace flappybird {
 		}
 
 		void update() {
-
-			//mouse
-			Vector2 mousePoint = GetMousePosition();
-			
-			buttons::isMouseOverButton(resume);
-			if (CheckCollisionPointRec(mousePoint, resume.size))
-			{
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					pause = !pause;
-				}
+			if (joystick) {
+				joystickInput();
 			}
-			buttons::isMouseOverButton(retry);
-			if (CheckCollisionPointRec(mousePoint, retry.size))
-			{
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					actualScene = Game;
-					pause_menu::pause = false;
-					gameplay::tutorial = true;
-					gameplay::init();
-				}
-			}
-			buttons::isMouseOverButton(menu);
-			if (CheckCollisionPointRec(mousePoint, menu.size))
-			{
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					gameplay::init();
-					pause_menu::pause = false;
-					gameplay::tutorial = true;
-					actualScene = Menu;
-
-				}
-			}
-			buttons::isMouseOverButton(quit);
-			if (CheckCollisionPointRec(mousePoint, quit.size))
-			{
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					isGameOver = true;
-				}
-			}
-			buttons::isMouseOverButton(mute);
-			if (CheckCollisionPointRec(mousePoint, mute.size))
-			{
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					if (isPlaying) {
-						PauseMusicStream(bgMusic);
-						isPlaying = false;
-					}
-					else {
-						PlayMusicStream(bgMusic);
-						isPlaying = true;
-					}
-				}
+			else {
+				mouseInput();
 			}
 		}
 
@@ -157,6 +119,143 @@ namespace flappybird {
 			UnloadTexture(quit.btn_texture);
 			UnloadTexture(mute.btn_texture);
 			UnloadTexture(unmute.btn_texture);
+		}
+
+		void joystickInput() {
+
+			if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_LEFT_FACE_DOWN)) {
+				if (menuPos > 2) {
+					menuPos = 0;
+				}
+				else {
+					menuPos++;
+				}
+				pMenu = static_cast<pauseMenu>(menuPos);
+			}
+			if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_LEFT_FACE_UP)) {
+				if (menuPos <= 0) {
+					menuPos = 3;
+				}
+				else {
+					menuPos--;
+				}
+				pMenu = static_cast<pauseMenu>(menuPos);
+			}
+
+			if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_MIDDLE_LEFT)) {
+				if (isPlaying) {
+					PauseMusicStream(bgMusic);
+					isPlaying = false;
+					mute.isHover = true;
+				}
+				else {
+					PlayMusicStream(bgMusic);
+					isPlaying = true;
+					mute.isHover = false;
+				}
+			}
+			
+			switch (pMenu) {
+			case resume_enum:
+				resume.isHover = true;
+				retry.isHover = false;
+				menu.isHover = false;
+				quit.isHover = false;
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+					pause = !pause;
+				}
+
+				break;
+			case retry_enum:
+				resume.isHover = false;
+				retry.isHover = true;
+				menu.isHover = false;
+				quit.isHover = false;
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+					actualScene = Game;
+					pause_menu::pause = false;
+					gameplay::tutorial = true;
+					gameplay::init();
+				}
+				break;
+			case menu_enum:
+				resume.isHover = false;
+				retry.isHover = false;
+				menu.isHover = true;
+				quit.isHover = false;
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+					gameplay::init();
+					pause_menu::pause = false;
+					gameplay::tutorial = true;
+					actualScene = Menu;
+				}
+				break;
+			case quit_enum:
+				resume.isHover = false;
+				retry.isHover = false;
+				menu.isHover = false;
+				quit.isHover = true;
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+					isGameOver = true;
+				}
+				break;
+			default:
+				break;
+			}
+		}
+
+		void mouseInput() {
+			//mouse
+			Vector2 mousePoint = GetMousePosition();
+
+			buttons::isMouseOverButton(resume);
+			if (CheckCollisionPointRec(mousePoint, resume.size))
+			{
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					pause = !pause;
+				}
+			}
+			buttons::isMouseOverButton(retry);
+			if (CheckCollisionPointRec(mousePoint, retry.size))
+			{
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					actualScene = Game;
+					pause_menu::pause = false;
+					gameplay::tutorial = true;
+					gameplay::init();
+				}
+			}
+			buttons::isMouseOverButton(menu);
+			if (CheckCollisionPointRec(mousePoint, menu.size))
+			{
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					gameplay::init();
+					pause_menu::pause = false;
+					gameplay::tutorial = true;
+					actualScene = Menu;
+				}
+			}
+			buttons::isMouseOverButton(quit);
+			if (CheckCollisionPointRec(mousePoint, quit.size))
+			{
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					isGameOver = true;
+				}
+			}
+			buttons::isMouseOverButton(mute);
+			if (CheckCollisionPointRec(mousePoint, mute.size))
+			{
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					if (isPlaying) {
+						PauseMusicStream(bgMusic);
+						isPlaying = false;
+					}
+					else {
+						PlayMusicStream(bgMusic);
+						isPlaying = true;
+					}
+				}
+			}
 		}
 	}
 }
