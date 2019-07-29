@@ -4,7 +4,7 @@
 namespace flappybird {
 	namespace gameOver {
 		void init();
-		void update(bool &isGameOver);
+		void update();
 		void draw();
 		void deInit();
 	}

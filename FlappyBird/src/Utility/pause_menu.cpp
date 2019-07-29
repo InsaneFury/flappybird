@@ -72,7 +72,7 @@ namespace flappybird {
 			isPlaying = true;
 		}
 
-		void update(bool &isGameOver) {
+		void update() {
 
 			//mouse
 			Vector2 mousePoint = GetMousePosition();

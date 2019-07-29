@@ -6,7 +6,7 @@
 namespace flappybird {
 	namespace gameplay {
 		void init();
-		void update(bool &isGameOver);
+		void update();
 		void draw();
 		void deInit();
 

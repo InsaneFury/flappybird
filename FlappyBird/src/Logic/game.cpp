@@ -6,6 +6,14 @@
 #include "Scenes/credits.h"
 #include "Characters/Player/player.h"
 
+#if defined(PLATFORM_RPI)
+#define XBOX360_NAME_ID     "Microsoft X-Box 360 pad"
+#define PS3_NAME_ID         "PLAYSTATION(R)3 Controller"
+#else
+#define XBOX360_NAME_ID     "Xbox 360 Controller"
+#define PS3_NAME_ID         "PLAYSTATION(R)3 Controller"
+#endif
+
 namespace flappybird {
 	namespace game {
 		static void init();
@@ -22,9 +30,9 @@ namespace flappybird {
 
 		ActualScene actualScene = Menu;
 
-		static bool isGameOver = false;
+		bool isGameOver = false;
 		bool multiplayerOn = false;
-		static bool joystick = false;
+		bool joystick = false;
 
 
 		void runGame() {
@@ -71,15 +79,18 @@ namespace flappybird {
 			{
 				joystick = true;
 			}
+			else {
+				joystick = false;
+			}
 			switch (actualScene) {
 			case Menu:
-				menu::update(isGameOver);
+				menu::update();
 				break;
 			case Game:
-				gameplay::update(isGameOver);
+				gameplay::update();
 				break;
 			case Gameover:
-				gameOver::update(isGameOver);
+				gameOver::update();
 				break;
 			case Credits:
 				credits::update();
@@ -115,7 +126,20 @@ namespace flappybird {
 			}
 			if (joystick)
 			{
-				DrawText(FormatText("GP1: %s", GetGamepadName(GAMEPAD_PLAYER1)), 10, 10, 10, BLACK);
+				if (IsGamepadName(GAMEPAD_PLAYER1, XBOX360_NAME_ID))
+				{
+					DrawText("Joystick: Xbox Controller", 10, 10, 10, BLACK);
+				}
+				else if (IsGamepadName(GAMEPAD_PLAYER1, PS3_NAME_ID))
+				{
+					DrawText("Joystick: PS3 Controller", 10, 10, 10, BLACK);
+				}
+				else {
+					DrawText("Joystick: Generic Controller", 10, 10, 10, BLACK);
+				}
+			}
+			else {
+				DrawText("Joystick: Not Detected", 10, 10, 10, RED);
 			}
 			EndDrawing();
 		}

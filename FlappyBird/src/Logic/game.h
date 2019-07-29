@@ -19,6 +19,8 @@ namespace flappybird {
 
 		extern ActualScene actualScene;
 		extern bool multiplayerOn;
+		extern bool joystick;
+		extern bool isGameOver;
 		extern Music bgMusic;
 		void runGame();
 	}

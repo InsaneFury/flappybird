@@ -52,37 +52,11 @@ namespace flappybird {
 
 		}
 
-		void update(bool &endGame) {
-			Vector2 mousePoint = GetMousePosition();
-
-			buttons::isMouseOverButton(play);
-			if (CheckCollisionPointRec(mousePoint, play.size)){
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					actualScene = Game;
-				}
-			}
-
-			buttons::isMouseOverButton(multiplayer);
-			if (CheckCollisionPointRec(mousePoint, multiplayer.size)) {
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					actualScene = Game;
-					multiplayerOn = true;
-				}
-			}
-
-			buttons::isMouseOverButton(credits);
-			if (CheckCollisionPointRec(mousePoint, credits.size)){
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					actualScene = Credits;
-				}
-			}
-
-			buttons::isMouseOverButton(quit);
-			if (CheckCollisionPointRec(mousePoint, quit.size)){
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-					endGame = true;
-				}
-			}
+		void update() {
+			mouseInput();
+			/*if (joystick) {
+				joystickInput();
+			}*/
 		}
 
 		void draw() {
@@ -114,6 +88,71 @@ namespace flappybird {
 			UnloadTexture(credits.btnOnHover_texture);
 			UnloadTexture(quit.btnOnHover_texture);	
 		}
+
+		void mouseInput() {
+			Vector2 mousePoint = GetMousePosition();
+
+			buttons::isMouseOverButton(play);
+			if (CheckCollisionPointRec(mousePoint, play.size)) {
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					actualScene = Game;
+				}
+			}
+
+			buttons::isMouseOverButton(multiplayer);
+			if (CheckCollisionPointRec(mousePoint, multiplayer.size)) {
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					actualScene = Game;
+					multiplayerOn = true;
+				}
+			}
+
+			buttons::isMouseOverButton(credits);
+			if (CheckCollisionPointRec(mousePoint, credits.size)) {
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					actualScene = Credits;
+				}
+			}
+
+			buttons::isMouseOverButton(quit);
+			if (CheckCollisionPointRec(mousePoint, quit.size)) {
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					isGameOver = true;
+				}
+			}
+		}
+
+		/*void joystickInput() {
+
+			buttons::isMouseOverButton(play);
+			if () {
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					actualScene = Game;
+				}
+			}
+
+			buttons::isMouseOverButton(multiplayer);
+			if () {
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					actualScene = Game;
+					multiplayerOn = true;
+				}
+			}
+
+			buttons::isMouseOverButton(credits);
+			if () {
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					actualScene = Credits;
+				}
+			}
+
+			buttons::isMouseOverButton(quit);
+			if () {
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+					isGameOver = true;
+				}
+			}
+		}*/
 	}
 }
 

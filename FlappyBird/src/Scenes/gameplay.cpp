@@ -39,9 +39,9 @@ namespace flappybird {
 			gameOver::init();
 		}
 
-		void update(bool &isGameOver) {
+		void update() {
 
-			if (!isGameOver){
+			if (!game::isGameOver){
 				if (game::multiplayerOn) {
 					playersAreDead = players::player.isDead && players::player2.isDead;
 				}
@@ -70,10 +70,10 @@ namespace flappybird {
 					columns_enemys::update();
 				}
 				else if(!playersAreDead && !tutorial) {
-					pause_menu::update(isGameOver);
+					pause_menu::update();
 				}
 				if (playersAreDead) {
-					gameOver::update(isGameOver);
+					gameOver::update();
 				}
 			}
 		}

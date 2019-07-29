@@ -4,9 +4,10 @@
 namespace flappybird {
 	namespace menu {
 		void init();
-		void update(bool &endGame);
+		void update();
 		void draw();
 		void deInit();
+		void mouseInput();
 	}
 }
 #endif // !MENU_H
