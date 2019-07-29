@@ -8,6 +8,11 @@ namespace flappybird {
 	namespace credits {
 		using namespace game;
 
+		enum creditsMenu {
+			back_enum
+		}cMenu;
+		static int menuPos = 0;
+
 		//Images
 		Texture2D credits_bg;
 		Texture2D credits_cloud;
@@ -46,6 +51,10 @@ namespace flappybird {
 					actualScene = Menu;
 				}
 			}
+
+			if (joystick) {
+				joystickInput();
+			}
 		}
 
 		void draw() {
@@ -70,6 +79,21 @@ namespace flappybird {
 			//Buttons
 			UnloadTexture(back.btnOnHover_texture);
 			UnloadTexture(back.btnOnHover_texture);
+
+		}
+
+		void joystickInput() {
+
+			switch (cMenu) {
+			case back_enum:
+				back.isHover = true;
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+					actualScene = Menu;
+				}
+				break;
+			default:
+				break;
+			}
 
 		}
 	}

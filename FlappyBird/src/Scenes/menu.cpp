@@ -14,6 +14,8 @@ namespace flappybird {
 			quit_enum
 		}menu;
 
+		static int menuPos = 0;
+
 		//Images
 		Texture2D menu_bg;
 		Texture2D menu_title;
@@ -25,7 +27,7 @@ namespace flappybird {
 		static buttons::BTNTEX credits;
 		static buttons::BTNTEX quit;
 
-		static int menuPos = 0;
+		
 
 		void init() {
 			menu_bg = LoadTexture("res/assets/Textures/GAMEPLAY_BG.png");
@@ -158,7 +160,7 @@ namespace flappybird {
 				multiplayer.isHover = false;
 				credits.isHover = false;
 				quit.isHover = false;
-				if (IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
 					actualScene = Game;
 				}
 				
@@ -168,7 +170,7 @@ namespace flappybird {
 				play.isHover = false;
 				quit.isHover = false;
 				credits.isHover = false;
-				if (IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
 				actualScene = Game;
 				multiplayerOn = true;
 				}
@@ -178,7 +180,7 @@ namespace flappybird {
 				play.isHover = false;
 				multiplayer.isHover = false;
 				quit.isHover = false;
-				if (IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
 				actualScene = Credits;
 				}
 				break;
@@ -187,7 +189,7 @@ namespace flappybird {
 				play.isHover = false;
 				multiplayer.isHover = false;
 				credits.isHover = false;
-				if (IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
 				isGameOver = true;
 				}
 				break;
