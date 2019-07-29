@@ -23,7 +23,7 @@ namespace flappybird {
 		int GRAVITY = 2000;
 		int PLAYER_ON_CLICK_ROTATION = -45;
 		int GRAVITY_ROTATION = 250;
-		float PLAYER_SPEED = -500;
+		float PLAYER_SPEED = -400;
 		
 		static float timer; 
 
@@ -82,7 +82,7 @@ namespace flappybird {
 		void playerOneController() {
 			// Player1 logic: acceleration
 			bool buttonPressed = (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) ||
-								  IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_TRIGGER_1));
+								  IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_TRIGGER_1));
 
 			if (buttonPressed && !player.isDead) {
 				if (player.position.y >= player.texture.height) {
@@ -144,7 +144,7 @@ namespace flappybird {
 		void playerTwoController() {
 			// Player2 logic: acceleration
 			bool buttonPressed = (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON) ||
-								 (IsGamepadButtonDown(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_LEFT_TRIGGER_1)));
+								 (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_LEFT_TRIGGER_1)));
 
 			if (buttonPressed && !player2.isDead) {
 

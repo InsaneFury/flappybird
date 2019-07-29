@@ -53,7 +53,6 @@ namespace flappybird {
 				else {
 					playersAreDead = players::player.isDead;
 				}
-				
 
 				mousePoint = GetMousePosition();
 				if (!pause && !playersAreDead && !tutorial) {
@@ -85,6 +84,7 @@ namespace flappybird {
 					pause_menu::update();
 				}
 				if (playersAreDead) {
+					gameOver::checkHiScore();
 					gameOver::update();
 				}
 			}
@@ -95,7 +95,6 @@ namespace flappybird {
 				DrawTexture(gameplay_tutorial, 0, 0, WHITE);
 			}
 			else {
-				
 				animations::drawBG();	
 				columns_enemys::draw();
 				DrawText(FormatText("SCORE: %02i", players::player.score), 
@@ -105,9 +104,7 @@ namespace flappybird {
 						GetScreenWidth() / 2 - MeasureText("00", 80) / 2, GetScreenHeight() / 2 - MeasureText("00", 80) / 2, 80, WHITE);
 				}
 				else {
-					
 					players::draw();
-					
 				}
 				animations::draw();
 				if (!pause && !playersAreDead) {

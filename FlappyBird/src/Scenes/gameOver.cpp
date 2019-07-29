@@ -3,11 +3,16 @@
 #include "gameplay.h"
 #include "Logic/game.h"
 #include "Utility/buttons.h"
+#include "Characters/Player/player.h"
 
 namespace flappybird {
 	namespace gameOver {
 		using namespace game;
 		using namespace gameplay;
+
+		enum  StorageData {
+			STORAGE_HISCORE 
+		};
 
 		enum gameOverMenu {
 			retry_enum,
@@ -16,6 +21,7 @@ namespace flappybird {
 		}gMenu;
 
 		static int menuPos = 0;
+		static int hiscore = 0;
 
 		//Images
 		Texture2D gameover_bg;
@@ -28,6 +34,8 @@ namespace flappybird {
 		buttons::BTNTEX quit;
 
 		void init() {
+			hiscore = StorageLoadValue(STORAGE_HISCORE);
+
 			gameover_bg = LoadTexture("res/assets/Textures/GAMEOVER_BG.png");
 			gameover_title = LoadTexture("res/assets/Textures/GAMEOVER_TITLE.png");
 
@@ -53,10 +61,11 @@ namespace flappybird {
 				                 (float)(GetScreenWidth() / 2 - quit.btn_texture.width / 2), 
 				                 (float)(GetScreenHeight() - 260), WHITE);
 
+			
 		}
 
 		void update() {
-
+			
 			if (joystick) {
 				joystickInput();
 			}
@@ -70,7 +79,9 @@ namespace flappybird {
 			//Draw UI
 			DrawTexture(gameover_bg, 0, 0, WHITE);
 			DrawTextureEx(gameover_title, title_position, 0, 1, WHITE);
-
+			
+			DrawText(FormatText("HI-SCORE: %02i", hiscore),
+				GetScreenWidth() / 2 - MeasureText("HI-SCORE: 00", 40) / 2, 260, 40, RED);
 			//Draw buttons
 			buttons::draw(retry);
 			buttons::draw(menu);
@@ -177,6 +188,13 @@ namespace flappybird {
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 					isGameOver = true;
 				}
+			}
+		}
+		void checkHiScore() {
+			hiscore = StorageLoadValue(STORAGE_HISCORE);
+			if (players::player.score > hiscore) {
+				hiscore = players::player.score;
+				StorageSaveValue(STORAGE_HISCORE, hiscore);
 			}
 		}
 	}
