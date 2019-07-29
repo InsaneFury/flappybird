@@ -48,7 +48,8 @@ namespace flappybird {
 
 				columnsUp[i].origin = { 0,0 };
 
-				columnsUp[i].check = false;
+				columnsUp[i].checkP1 = false;
+				columnsUp[i].checkP2 = false;
 
 				//Down Cols
 				columnsDown[i].texture = LoadTexture("res/assets/Textures/COLUMN.png");
@@ -70,7 +71,8 @@ namespace flappybird {
 				columnsDown[i].origin = { (float)columnsDown[i].texture.width,
 										(float)columnsDown[i].texture.height };
 
-				columnsDown[i].check = false;
+				columnsDown[i].checkP1 = false;
+				columnsDown[i].checkP2 = false;
 			}
 		}
 
@@ -107,8 +109,8 @@ namespace flappybird {
 					}
 
 					if (columnsUp[i].position.x + columnsUp[i].texture.width < player.position.x && 
-						!player.isDead && columnsUp[i].check == false) {
-						columnsUp[i].check = true;
+						!player.isDead && columnsUp[i].checkP1 == false) {
+						columnsUp[i].checkP1 = true;
 						player.score++;
 					}
 
@@ -123,8 +125,8 @@ namespace flappybird {
 						}
 
 						if (columnsUp[i].position.x + columnsUp[i].texture.width < player2.position.x &&
-							!player2.isDead && columnsUp[i].check == false) {
-							columnsUp[i].check = true;
+							!player2.isDead && columnsUp[i].checkP2 == false) {
+							columnsUp[i].checkP2 = true;
 							player.score++;
 						}
 					}
@@ -134,12 +136,14 @@ namespace flappybird {
 						// recicle up
 						columnsUp[i].position.y = 0 - random;
 						columnsUp[i].position.x = GetScreenWidth() + COL_GAP * 3;
-						columnsUp[i].check = false;
+						columnsUp[i].checkP1 = false;
+						columnsUp[i].checkP2 = false;
 
 						// recicle down
 						columnsDown[i].position.y = columnsUp[i].position.y + columnsUp[i].texture.height + BIRD_GAP;
 						columnsDown[i].position.x = GetScreenWidth() + COL_GAP * 3;
-						columnsDown[i].check = false;
+						columnsDown[i].checkP1 = false;
+						columnsUp[i].checkP2 = false;
 					}
 
 					columnsDown[i].destRec = { columnsDown[i].position.x, columnsDown[i].position.y,

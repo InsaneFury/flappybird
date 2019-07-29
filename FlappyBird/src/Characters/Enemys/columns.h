@@ -10,7 +10,8 @@ namespace flappybird {
 			Texture2D texture;
 			Vector2 position;
 			Rectangle collider;
-			bool check;
+			bool checkP1;
+			bool checkP2;
 			//Stuff to use DrawTexturePro
 			// NOTE: Source rectangle (part of the texture to use for drawing)
 			Rectangle sourceRec;
