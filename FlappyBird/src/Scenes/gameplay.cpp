@@ -16,6 +16,9 @@ namespace flappybird {
 		bool tutorial = true;
 		bool playersAreDead = false;
 
+		float startWaitTime = 4;
+		float timer = startWaitTime;
+
 		Texture2D gameplay_vintage;
 		Texture2D gameplay_tutorial;
 
@@ -43,7 +46,7 @@ namespace flappybird {
 		void update() {
 			
 			if (!game::isGameOver){
-
+				timer -= GetFrameTime();
 				if (game::multiplayerOn) {
 					playersAreDead = players::player.isDead && players::player2.isDead;
 				}
@@ -73,12 +76,12 @@ namespace flappybird {
 					tutorial = false;
 				}
 		
-				if (!pause && !tutorial){
+				if ((!pause && !tutorial) && (timer < 0)){
 					animations::update();
 					players::update();
 					columns_enemys::update();
 				}
-				else if(!playersAreDead && !tutorial) {
+				else if((!playersAreDead && !tutorial) && (timer < 0)) {
 					pause_menu::update();
 				}
 				if (playersAreDead) {
@@ -92,19 +95,26 @@ namespace flappybird {
 				DrawTexture(gameplay_tutorial, 0, 0, WHITE);
 			}
 			else {
+				
 				animations::drawBG();	
 				columns_enemys::draw();
-				players::draw();
-				animations::draw();
-
 				DrawText(FormatText("SCORE: %02i", players::player.score), 
 					     GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, WHITE);
-
+				if (timer > 0) {
+					DrawText(FormatText("%02i", static_cast<int>(timer)),
+						GetScreenWidth() / 2 - MeasureText("00", 80) / 2, GetScreenHeight() / 2 - MeasureText("00", 80) / 2, 80, WHITE);
+				}
+				else {
+					
+					players::draw();
+					
+				}
+				animations::draw();
 				if (!pause && !playersAreDead) {
 					buttons::draw(pause_btn);
 				}
 
-				if (pause && !playersAreDead) {
+				if (pause && !playersAreDead && (timer < 0)) {
 					pause_menu::draw();
 				}
 

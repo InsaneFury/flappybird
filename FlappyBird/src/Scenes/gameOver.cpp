@@ -118,6 +118,7 @@ namespace flappybird {
 					gameplay::pause = false;
 					gameplay::tutorial = true;
 					gameplay::init();
+					gameplay::timer = gameplay::startWaitTime;
 				}
 
 				break;
@@ -157,6 +158,7 @@ namespace flappybird {
 					gameplay::pause = false;
 					gameplay::tutorial = true;
 					gameplay::init();
+					gameplay::timer = gameplay::startWaitTime;
 				}
 			}
 			buttons::isMouseOverButton(menu);

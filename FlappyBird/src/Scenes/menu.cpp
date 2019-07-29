@@ -108,6 +108,7 @@ namespace flappybird {
 			if (CheckCollisionPointRec(mousePoint, play.size)) {
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 					actualScene = Game;
+					gameplay::timer = gameplay::startWaitTime;
 				}
 			}
 
@@ -116,6 +117,7 @@ namespace flappybird {
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 					actualScene = Game;
 					multiplayerOn = true;
+					gameplay::timer = gameplay::startWaitTime;
 				}
 			}
 
@@ -164,6 +166,7 @@ namespace flappybird {
 				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
 					actualScene = Game;
 					gameplay::init();
+					gameplay::timer = gameplay::startWaitTime;
 				}
 				
 				break;
@@ -175,6 +178,7 @@ namespace flappybird {
 				if (IsGamepadButtonReleased(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
 				actualScene = Game;
 				multiplayerOn = true;
+				gameplay::timer = gameplay::startWaitTime;
 				}
 				break;
 			case credits_enum:

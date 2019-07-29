@@ -12,6 +12,8 @@ namespace flappybird {
 
 		extern bool pause;
 		extern bool tutorial;
+		extern float timer;
+		extern float startWaitTime;
 	}
 }
 #endif // !GAMEPLAY_H
