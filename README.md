@@ -20,6 +20,9 @@ Enjoy!
 <p align="center">
 <img width="1000" src="https://github.com/InsaneFury/flappybird/blob/master/screenshots/4.png">
 </p>
+<p align="center">
+<img width="1000" src="https://github.com/InsaneFury/flappybird/blob/master/screenshots/5.png">
+</p>
 
 # Skills
 - **C++/C# Programmer**

@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0] - 2019-07-29
+### Added
+- New Multiplayer CO-OP mode
+- New Hi-Score Persistent Data
+- 100% joystick compatibility PS3/XBOX/Generics
+
+### Changed
+- Better Performance
+- New visuals
+
+### Fixed
+- Minor bugs
+- Code Cleanning
+
 ## [1.1] - 2018-11-26
 ### Fixed
 - Unloadsound bird_flap
