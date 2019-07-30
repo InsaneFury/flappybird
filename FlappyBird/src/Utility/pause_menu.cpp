@@ -175,6 +175,7 @@ namespace flappybird {
 					actualScene = Game;
 					pause_menu::pause = false;
 					gameplay::tutorial = true;
+					gameplay::timer = gameplay::startWaitTime;
 					gameplay::init();
 				}
 				break;
@@ -222,6 +223,7 @@ namespace flappybird {
 					actualScene = Game;
 					pause_menu::pause = false;
 					gameplay::tutorial = true;
+					gameplay::timer = gameplay::startWaitTime;
 					gameplay::init();
 				}
 			}

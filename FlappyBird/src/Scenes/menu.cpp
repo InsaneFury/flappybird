@@ -83,7 +83,7 @@ namespace flappybird {
 			buttons::draw(multiplayer);
 			buttons::draw(credits);
 			buttons::draw(quit);
-			DrawText("v2.1", screenWidth - 50, screenHeight - 20, 20, WHITE);
+			DrawText("v2.2", screenWidth - 50, screenHeight - 20, 20, WHITE);
 		}
 
 		void deInit() {
