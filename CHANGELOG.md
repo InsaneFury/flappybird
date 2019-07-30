@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1] - 2019-07-29
+### Fixed
+- Multiplayer Freeze bug
+
 ## [2.0] - 2019-07-29
 ### Added
 - New Multiplayer CO-OP mode
