@@ -121,11 +121,11 @@ namespace flappybird {
 				columns_enemys::draw();
 
 				DrawText(FormatText("SCORE: %02i", players::player.score), 
-					     GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, WHITE);
+					     GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, YELLOW);
 
 				if (timer > 0) {
 					DrawText(FormatText("%02i", static_cast<int>(timer)),
-						GetScreenWidth() / 2 - MeasureText("00", 80) / 2, GetScreenHeight() / 2 - MeasureText("00", 80) / 2, 80, WHITE);
+						GetScreenWidth() / 2 - MeasureText("00", 80) / 2, GetScreenHeight() / 2 - MeasureText("00", 80) / 2, 80, YELLOW);
 				}
 				else {
 					players::draw();
