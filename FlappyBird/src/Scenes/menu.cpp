@@ -109,6 +109,7 @@ namespace flappybird {
 				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 					actualScene = Game;
 					gameplay::timer = gameplay::startWaitTime;
+					multiplayerOn = false;
 				}
 			}
 
@@ -167,6 +168,7 @@ namespace flappybird {
 					actualScene = Game;
 					gameplay::init();
 					gameplay::timer = gameplay::startWaitTime;
+					multiplayerOn = false;
 				}
 				
 				break;
