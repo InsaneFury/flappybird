@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2] - 2019-07-30
+
+### Modified
+- Game size optimization 11mb -> 4,81mb (56,3% better)
+### Fixed
+- Pause retry button
+
 ## [2.1] - 2019-07-29
 ### Fixed
 - Multiplayer Freeze bug
