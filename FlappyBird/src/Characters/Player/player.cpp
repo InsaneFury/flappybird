@@ -231,10 +231,10 @@ namespace flappybird {
 
 		void initPlayerTwo() {
 			//Player 2 ===========================================================================================
-			player2.texture = LoadTexture("res/assets/Textures/birdhero.png");
+			player2.texture = LoadTexture("res/assets/Textures/birdhero2.png");
 			player2.position = { (float)GetScreenWidth() / 2 - player2.texture.width / 2 - 350,
 								(float)GetScreenHeight() / 2 - player2.texture.height / 2 };
-			player2.color = RED;
+			player2.color = WHITE;
 			player2.acceleration = { 0,0 };
 			player2.rotation = 0;
 			player2.speed.x = 0;

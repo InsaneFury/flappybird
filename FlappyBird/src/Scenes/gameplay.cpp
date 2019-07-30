@@ -20,7 +20,10 @@ namespace flappybird {
 		float timer = startWaitTime;
 
 		Texture2D gameplay_vintage;
-		Texture2D gameplay_tutorial;
+		Texture2D gameplay_SP_PC;
+		Texture2D gameplay_SP_JS;
+		Texture2D gameplay_MP_PC;
+		Texture2D gameplay_MP_JS;
 
 		buttons::BTNTEX pause_btn;
 
@@ -34,7 +37,10 @@ namespace flappybird {
 				                 (float)(pause_btn.btn_texture.height/2), WHITE);
 
 			gameplay_vintage = LoadTexture("res/assets/Textures/VINTAGE.png");
-			gameplay_tutorial = LoadTexture("res/assets/Textures/tutorial.png");
+			gameplay_SP_PC = LoadTexture("res/assets/Textures/SP_PC.png");
+			gameplay_SP_JS = LoadTexture("res/assets/Textures/SP_JS.png");
+			gameplay_MP_PC = LoadTexture("res/assets/Textures/MP_PC.png");
+			gameplay_MP_JS = LoadTexture("res/assets/Textures/MP_JS.png");
 			
 			players::init();
 			columns_enemys::init();
@@ -91,8 +97,20 @@ namespace flappybird {
 		}
 
 		void draw() {
-			if (tutorial) {		
-				DrawTexture(gameplay_tutorial, 0, 0, WHITE);
+			if (tutorial) {
+				if (game::joystick && !game::multiplayerOn) {
+					DrawTexture(gameplay_SP_JS, 0, 0, WHITE);
+				}
+				else if (game::joystick && game::multiplayerOn) {
+					DrawTexture(gameplay_MP_JS, 0, 0, WHITE);
+				}
+				else if (!game::joystick && !game::multiplayerOn) {
+					DrawTexture(gameplay_SP_PC, 0, 0, WHITE);
+				}
+				else if (!game::joystick && game::multiplayerOn) {
+					DrawTexture(gameplay_MP_PC, 0, 0, WHITE);
+				}
+				
 			}
 			else {
 				animations::drawBG();	
@@ -135,7 +153,7 @@ namespace flappybird {
 
 			columns_enemys::deInit();
 			UnloadTexture(gameplay_vintage);
-			UnloadTexture(gameplay_tutorial);
+			UnloadTexture(gameplay_SP_PC);
 			UnloadTexture(pause_btn.btn_texture);
 		}
 
