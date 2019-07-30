@@ -81,7 +81,7 @@ namespace flappybird {
 
 		void playerOneController() {
 			// Player1 logic: acceleration
-			bool buttonPressed = (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) ||
+			bool buttonPressed = (IsKeyPressed(KEY_W) ||
 								  IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_RIGHT_TRIGGER_1));
 
 			if (buttonPressed && !player.isDead) {
@@ -143,7 +143,7 @@ namespace flappybird {
 
 		void playerTwoController() {
 			// Player2 logic: acceleration
-			bool buttonPressed = (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON) ||
+			bool buttonPressed = (IsKeyPressed(KEY_UP) ||
 								 (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_LEFT_TRIGGER_1)));
 
 			if (buttonPressed && !player2.isDead) {

@@ -52,7 +52,9 @@ namespace flappybird {
 		void update() {
 			
 			if (!game::isGameOver){
-				timer -= GetFrameTime();
+				if (!tutorial) {
+					timer -= GetFrameTime();
+				}
 				if (game::multiplayerOn) {
 					playersAreDead = players::player.isDead && players::player2.isDead;
 				}
@@ -61,13 +63,15 @@ namespace flappybird {
 				}
 
 				mousePoint = GetMousePosition();
-				if (!pause && !playersAreDead && !tutorial) {
+				if (!pause && !playersAreDead && !tutorial && (timer < 0)) {
 					if (game::joystick) {
 						if (IsGamepadButtonPressed(GAMEPAD_PLAYER1, GAMEPAD_BUTTON_MIDDLE_RIGHT)) {
 							pause = !pause;
 						}
 					}
-					
+					if (IsKeyPressed(KEY_ESCAPE)) {
+						pause = !pause;
+					}
 					buttons::isMouseOverButton(pause_btn);
 					if (CheckCollisionPointRec(mousePoint, pause_btn.size))
 					{
@@ -77,7 +81,7 @@ namespace flappybird {
 					}
 				}
 
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) || IsGamepadButtonReleased(GAMEPAD_PLAYER1,GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
+				if (IsKeyPressed(KEY_W) || IsGamepadButtonReleased(GAMEPAD_PLAYER1,GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
 					tutorial = false;
 				}
 		
@@ -91,6 +95,7 @@ namespace flappybird {
 				}
 				if (playersAreDead) {
 					gameOver::checkHiScore();
+					timer = startWaitTime;
 					gameOver::update();
 				}
 			}
@@ -109,14 +114,15 @@ namespace flappybird {
 				}
 				else if (!game::joystick && game::multiplayerOn) {
 					DrawTexture(gameplay_MP_PC, 0, 0, WHITE);
-				}
-				
+				}	
 			}
 			else {
 				animations::drawBG();	
 				columns_enemys::draw();
+
 				DrawText(FormatText("SCORE: %02i", players::player.score), 
 					     GetScreenWidth() / 2 - MeasureText("SCORE: 00", 40) / 2, 50, 40, WHITE);
+
 				if (timer > 0) {
 					DrawText(FormatText("%02i", static_cast<int>(timer)),
 						GetScreenWidth() / 2 - MeasureText("00", 80) / 2, GetScreenHeight() / 2 - MeasureText("00", 80) / 2, 80, WHITE);
@@ -125,7 +131,7 @@ namespace flappybird {
 					players::draw();
 				}
 				animations::draw();
-				if (!pause && !playersAreDead) {
+				if (!pause && !playersAreDead && (timer < 0)) {
 					buttons::draw(pause_btn);
 				}
 
